@@ -9,3 +9,6 @@
 - Ensure approximate consistency for browsers that don't support CSS gradients
 - Style the button element
 - Provide a decent alternative styling for ie6
+
+## Screenshot of Demo
+![Demo](http://s3.imathis.com/dev/compass/fancy-buttons/demo.png)
