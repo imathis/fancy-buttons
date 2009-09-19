@@ -1,0 +1,161 @@
+!base_font_size ||= 14px
+!default_button_color ||= #fff
+!default_button_text_color ||= #000
+!default_button_font_weight ||= "bold"
+!default_button_border_thickness ||= 2px
+!default_button_roundness ||= 6px
+
+=fancy-button(!base= !default_button_color, !roundness= !default_button_roundness, !font_size= !base_font_size+2, !border_thickness= !default_button_border_thickness, !text_color = !default_button_text_color, !font_weight = !default_button_font_weight)
+  
+  /* setup colors */
+  !light1 = lighten(!base, 5)
+  !light2 = lighten(!base, 10)
+  !light3 = lighten(!base, 15)
+  !light4 = lighten(!base, 20)
+  !light5 = lighten(!base, 25)
+  !light6 = lighten(!base, 30)
+  !light7 = lighten(!base, 35)
+  !light8 = lighten(!base, 40)
+  !light9 = lighten(!base, 45)
+  !light10 = lighten(!base, 50)
+  
+  !dark1 = darken(!base, 5)
+  !dark2 = darken(!base, 10)
+  !dark3 = darken(!base, 15)
+  !dark4 = darken(!base, 20)
+  !dark5 = darken(!base, 25)
+  !dark6 = darken(!base, 30)
+  !dark7 = darken(!base, 35)
+  !dark8 = darken(!base, 40)
+  !dark9 = darken(!base, 45)
+  !dark10 = darken(!base, 50)
+  
+  @if luminosity(!base) >= luminosity(#A2A2A2)
+    +light-button(!base, !text_color, !font_weight, !light1, !light2, !light3, !light4, !light5, !light6, !light7, !light8, !light9, !light10, !dark1, !dark2, !dark3, !dark4, !dark5, !dark6, !dark7, !dark8, !dark9, !dark10)
+  @else
+    +dark-button(!base, !text_color, !font_weight, !light1, !light2, !light3, !light4, !light5, !light6, !light7, !light8, !light9, !light10, !dark1, !dark2, !dark3, !dark4, !dark5, !dark6, !dark7, !dark8, !dark9, !dark10)
+  +button-structure(!roundness, !font_size, !text_color, !border_thickness)
+
+=light-button(!base, !text_color, !font_weight, !light1, !light2, !light3, !light4, !light5, !light6, !light7, !light8, !light9, !light10, !dark1, !dark2, !dark3, !dark4, !dark5, !dark6, !dark7, !dark8, !dark9, !dark10)
+
+  /* Defaut button state */
+  !base                   = desaturate(!dark6, 50)
+  !gradient_top           = !light3
+  !gradient_bottom        = desaturate(!dark6, 50)
+  !border                 = desaturate(mix(!dark10, #333, 50), 50)
+  !border_dark            = desaturate(mix(!dark10, #333, 50), 50)
+  
+  /* Hover button state */
+  !hover                  = desaturate(!dark4, 50)
+  !hover_gradient_top     = !light10
+  !hover_gradient_bottom  = desaturate(!dark4, 50)
+  !hover_border           = desaturate(mix(!dark10, #333, 60), 50)
+  !hover_border_dark      = desaturate(mix(!dark10, #333, 60), 50)
+  
+  /* Active button state */
+  !active                 = desaturate(!dark6, 50)
+  !active_gradient_top    = !light2
+  !active_gradient_bottom = desaturate(!dark6, 50)
+  !active_border          = desaturate(mix(!dark10, #333, 30), 50)
+  !active_border_dark     = desaturate(mix(!dark10, #333, 40), 50)
+  
+  !text_color = mix(!dark10, #000, 30)
+  !text_shadow = !gradient_top
+  !background_position= "center left"
+  
+  +build-button(!base, !text_color, !font_weight, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
+  
+=dark-button(!base, !text_color, !font_weight, !light1, !light2, !light3, !light4, !light5, !light6, !light7, !light8, !light9, !light10, !dark1, !dark2, !dark3, !dark4, !dark5, !dark6, !dark7, !dark8, !dark9, !dark10)
+
+  /* Defaut button state */
+  !base                   = desaturate(!dark4, 10)
+  !gradient_top           = desaturate(!light6, 10)
+  !gradient_bottom        = desaturate(!dark4, 10)
+  !border                 = mix(!dark7, #333, 60)
+  !border_dark            = mix(!dark7, #333, 60)
+  
+  /* Hover button state */
+  !hover                  = !dark3
+  !hover_gradient_top     = !light7
+  !hover_gradient_bottom  = !dark3
+  !hover_border           = mix(!dark7, #333, 80)
+  !hover_border_dark      = mix(!dark7, #333, 80)
+  
+  /* Active button state */
+  !active                 = !dark4
+  !active_gradient_top    = !light4
+  !active_gradient_bottom = !dark4
+  !active_border          = mix(!dark7, #333, 70)
+  !active_border_dark     = mix(!dark7, #333, 70)
+  
+  !text_shadow = !gradient_bottom
+  
+  !background_position= "center center"
+  
+  @if luminosity(!base) >= luminosity(#aaa)
+    !text_color = mix(!base, #000, 30)
+    !text_shadow = desaturate(!light8, 10)
+    !background_position= "center center"
+  @else
+    !text_color = #fff
+  
+  +build-button(!base, !text_color, !font_weight, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
+
+=build-button(!base, !text_color, !font_weight, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
+  color= !text_color
+  font-weight= !font_weight
+  background-position= !background_position
+  /* set button colors for each state */
+  +button-colors(!base, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
+  text-shadow= !text_shadow "1px 1px 1px"
+  &:hover, &:focus
+    +button-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
+  &:active
+    +button-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color, true)
+    //text-shadow= !text_shadow "-1px -1px 2px"
+
+=button-colors(!base, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color, !active = false)
+  //!gradient_stop1 = darken(!gradient_top, 30)
+  //!gradient_stop2 = darken(!gradient_bottom, 15)
+  //background-image= "-webkit-gradient(linear, left top, left bottom, from("+!gradient_top+"), to("+!gradient_bottom+"), color-stop(.49, "+!gradient_stop1+"), color-stop(.50, "+!gradient_stop2+"))"
+  background:
+    color= !base
+    image= image_url("button_bg.png")
+    repeat: no-repeat
+  !gradient = "left top, left bottom, from("+!gradient_top+"), to("+!gradient_bottom+")"
+  background-image= "-webkit-gradient(linear, "+!gradient+")"
+  background-image= "-moz-linear-gradient("+!gradient+")"
+  border:
+    color= !border
+    bottom-color= !border_dark
+    right-color= !border_dark
+
+=button-structure(!roundness, !font_size, !text_color, !border_thickness)
+  !v_padding = floor(!font_size/2.5)
+  !h_padding = floor(!font_size*1.1)
+  !v_padding_active = !v_padding - 1px
+  !h_padding_active = !h_padding - 1px
+  !line_height = !font_size*2
+    
+  +border-radius(!roundness)
+  border:
+    width= !border_thickness
+    style: solid
+  cursor: pointer
+  font-size= !font_size
+  padding= !v_padding !h_padding
+  line-height= !line_height
+  text-decoration: none
+  &:active
+    border-width= !border_thickness + 1px
+    padding= !v_padding_active !h_padding_active
+  &::-moz-focus-inner
+    border: none
+    padding: 0
+  &:focus
+    outline: none
+  span.arrow
+    font-family: "Lucida Grande", Lucida, Arial, sans_serif
+    font-size= !font_size +4px
+    line-height= !font_size -4px
+    margin-left= 4px
