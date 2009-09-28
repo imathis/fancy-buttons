@@ -97,9 +97,9 @@
     color= !base
     image= image_url("button_bg.png")
     repeat: no-repeat
-  !gradient = "left top, left bottom, from("+!gradient_top+"), to("+!gradient_bottom+")"
-  background-image= "-webkit-gradient(linear, "+!gradient+")"
-  background-image= "-moz-linear-gradient("+!gradient+")"
+  !gradient = "left top, left bottom, from(#{!gradient_top}), to(#{!gradient_bottom})"
+  background-image= "-webkit-gradient(linear, #{!gradient})"
+  background-image= "-moz-linear-gradient(#{!gradient})"
   border:
     color= !border
     bottom-color= !border_dark
