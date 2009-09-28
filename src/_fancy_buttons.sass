@@ -91,12 +91,8 @@
     +button-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
   &:active
     +button-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color, true)
-    //text-shadow= !text_shadow "-1px -1px 2px"
 
 =button-colors(!base, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color, !active = false)
-  //!gradient_stop1 = darken(!gradient_top, 30)
-  //!gradient_stop2 = darken(!gradient_bottom, 15)
-  //background-image= "-webkit-gradient(linear, left top, left bottom, from("+!gradient_top+"), to("+!gradient_bottom+"), color-stop(.49, "+!gradient_stop1+"), color-stop(.50, "+!gradient_stop2+"))"
   background:
     color= !base
     image= image_url("button_bg.png")
