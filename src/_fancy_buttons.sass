@@ -84,9 +84,9 @@
 =build-button(!default, !text_color, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
   color= !text_color
   background-position= !background_position
+  text-shadow= !text_shadow "1px 1px 1px"
   /* set button colors for each state */
   +button-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
-  text-shadow= !text_shadow "1px 1px 1px"
   &:hover, &:focus
     +button-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
   &:active
