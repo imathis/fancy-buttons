@@ -43,6 +43,11 @@
   
   +build-button(!default, !text_color, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
   
+=glossy-button
+  background:
+    position: right center
+    image= image_url("button_bg.png")
+
 =dark-button(!base, !text_color)
   !dark_color             = darken(!base, 20)
   !darker_color           = darken(!base, 35)
@@ -55,9 +60,9 @@
   !border_dark            = mix(!darker_color, #333, 60)
   
   /* Hover button state */
-  !hover                  = darken(!base, 15)
-  !hover_gradient_top     = lighten(!base, 35)
-  !hover_gradient_bottom  = darken(!base, 15)
+  !hover                  = lighten(!base, 10)
+  !hover_gradient_top     = lighten(!base, 25)
+  !hover_gradient_bottom  = lighten(!base, 10)
   !hover_border           = mix(!darker_color, #333, 80)
   !hover_border_dark      = mix(!darker_color, #333, 80)
   
