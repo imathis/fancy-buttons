@@ -3,15 +3,15 @@
 !default_button_text_color ||= #000
 !default_button_font_weight ||= "bold"
 !default_button_border_thickness ||= 2px
-!default_button_roundness ||= 6px
+!default_button_radius ||= 6px
 
-=fancy-button(!base= !default_button_color, !roundness= !default_button_roundness, !font_size= !base_font_size, !border_thickness= !default_button_border_thickness, !text_color = !default_button_text_color, !font_weight = !default_button_font_weight)
+=fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !base_font_size, !border_thickness= !default_button_border_thickness, !text_color = !default_button_text_color, !font_weight = !default_button_font_weight)
   
   @if luminosity(!base) >= luminosity(#A2A2A2)
     +light-button(!base, !text_color, !font_weight)
   @else
     +dark-button(!base, !text_color, !font_weight)
-  +button-structure(!roundness, !font_size, !text_color, !border_thickness)
+  +button-structure(!radius, !font_size, !text_color, !border_thickness)
 
 =light-button(!base, !text_color, !font_weight)
   !dark_color             = darken(!base, 50)
@@ -127,13 +127,13 @@
   line-height= !font_size - 4px
   margin-left= 4px
 
-=button-structure(!roundness, !font_size, !text_color, !border_thickness, !line_height = !font_size * 2)
+=button-structure(!radius, !font_size, !text_color, !border_thickness, !line_height = !font_size * 2)
   !v_padding = floor(!font_size/2.5)
   !h_padding = floor(!font_size*1.1)
   !v_padding_active = !v_padding - 1px
   !h_padding_active = !h_padding - 1px
   +button-reset
-  +border-radius(!roundness)
+  +border-radius(!radius)
   border-width= !border_thickness
   font-size= !font_size
   padding= !v_padding !h_padding
