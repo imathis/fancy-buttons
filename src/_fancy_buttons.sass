@@ -1,106 +1,118 @@
 !base_font_size ||= 14px
 !default_button_color ||= #fff
-!default_button_text_color ||= #000
 !default_button_font_weight ||= "bold"
 !default_button_border_thickness ||= 2px
 !default_button_radius ||= 6px
 
-=fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !base_font_size, !border_thickness= !default_button_border_thickness, !text_color = !default_button_text_color)
-  +button-structure(!radius, !font_size, !text_color, !border_thickness)
-  @if luminosity(!base) >= luminosity(#A2A2A2)
-    +light-button(!base, !text_color)
-  @else
-    +dark-button(!base, !text_color)
+// Make a fancy button.
+=fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !base_font_size, !border_thickness= !default_button_border_thickness, !text_color = false)
+  +button-reset
+  +button-structure(!radius, !font_size, !border_thickness)
+  +fancy-button-colors(!base, !text_color)
 
-=light-button(!base, !text_color)
+// Style the button's colors, picking the most appropriate color set for the base color.
+=fancy-button-colors(!base, !text_color = false)
+  @if luminosity(!base) >= luminosity(#A2A2A2)
+    +light-button-colors(!base, !text_color)
+  @else
+    +dark-button-colors(!base, !text_color)
+
+// Style the button colors for a light button
+=light-button-colors(!base, !text_color = false)
   !dark_color             = darken(!base, 50)
   !darker_color           = darken(!base, 30)
 
-  /* Defaut button state */
+  @if not !text_color
+    !text_color = mix(!dark_color, #000, 30)
+  
+  background-position: "center left"
+  text-shadow= lighten(!base, 15) "1px 1px 1px"
+
+  // Defaut button state
   !default                = desaturate(!darker_color, 50)
   !gradient_top           = lighten(!base, 15)
   !gradient_bottom        = desaturate(!darker_color, 50)
   !border                 = desaturate(mix(!dark_color, #333, 50), 50)
   !border_dark            = desaturate(mix(!dark_color, #333, 50), 50)
-  +button-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
+  +button-state-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
   
-  /* Hover button state */
+  // Hover button state
   &:hover, &:focus
     !hover                  = desaturate(darken(!base, 20), 50)
     !hover_gradient_top     = lighten(!base, 50)
     !hover_gradient_bottom  = desaturate(darken(!base, 20), 50)
     !hover_border           = desaturate(mix(!dark_color, #333, 60), 50)
     !hover_border_dark      = desaturate(mix(!dark_color, #333, 60), 50)
-    +button-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
+    +button-state-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
   
-  /* Active button state */
+  // Active button state
   &:active
     !active                 = desaturate(!darker_color, 50)
     !active_gradient_top    = lighten(!base, 10)
     !active_gradient_bottom = desaturate(!darker_color, 50)
     !active_border          = desaturate(mix(!dark_color, #333, 30), 50)
     !active_border_dark     = desaturate(mix(!dark_color, #333, 40), 50)
-    +button-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color)
-  
-  !text_color = mix(!dark_color, #000, 30)
-  !text_shadow = !gradient_top
-  !background_position= "center left"
-  
-  color= !text_color
-  background-position= !background_position
-  text-shadow= !text_shadow "1px 1px 1px"
-  
-=glossy-button
-  background:
-    position: right center
-    image= image_url("button_bg.png")
+    +button-state-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color)
 
-=dark-button(!base, !text_color)
+// Style the button colors for a dark button
+=dark-button-color(!base, !text_color = false)
   !dark_color             = darken(!base, 20)
   !darker_color           = darken(!base, 35)
 
-  /* Defaut button state */
+  // Default the text color to something sensible
+  @if not !text_color
+    @if luminosity(!base) >= luminosity(#aaa)
+      !text_color = mix(!base, #000, 30)
+    @else
+      !text_color = #fff
+  
+  !background_position = "left center"
+  !text_shadow = desaturate(!dark_color, 10)
+  @if luminosity(!base) >= luminosity(#aaa)
+    // XXX I think this only applies to colors
+    // XXX between luminosity(#A2A2A2) and luminosity(#aaa)
+    // XXX what's the goal of this code?
+    !text_shadow = desaturate(lighten(!base, 40), 10)
+    !background_position= "center center"
+
+  background-position= !background_position
+  text-shadow= !text_shadow "1px 1px 1px"
+
+  // Defaut button state
   !default                = desaturate(!dark_color, 10)
   !gradient_top           = desaturate(lighten(!base, 30), 10)
   !gradient_bottom        = desaturate(!dark_color, 10)
   !border                 = mix(!darker_color, #333, 60)
   !border_dark            = mix(!darker_color, #333, 60)
-  +button-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
+  +button-state-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
   
-  /* Hover button state */
-  !hover                  = lighten(!base, 10)
-  !hover_gradient_top     = lighten(!base, 25)
-  !hover_gradient_bottom  = lighten(!base, 10)
-  !hover_border           = mix(!darker_color, #333, 80)
-  !hover_border_dark      = mix(!darker_color, #333, 80)
+  // Hover button state
   &:hover, &:focus
-    +button-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
+    !hover                  = lighten(!base, 10)
+    !hover_gradient_top     = lighten(!base, 25)
+    !hover_gradient_bottom  = lighten(!base, 10)
+    !hover_border           = mix(!darker_color, #333, 80)
+    !hover_border_dark      = mix(!darker_color, #333, 80)
+    +button-state-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
   
-  /* Active button state */
-  !active                 = !dark_color
-  !active_gradient_top    = lighten(!base, 20)
-  !active_gradient_bottom = !dark_color
-  !active_border          = mix(!darker_color, #333, 70)
-  !active_border_dark     = mix(!darker_color, #333, 70)
+  // Active button state
   &:active
-    +button-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color)
-  
-  !text_shadow = !gradient_bottom
-  
-  !background_position= "center center"
-  
-  @if luminosity(!base) >= luminosity(#aaa)
-    !text_color = mix(!base, #000, 30)
-    !text_shadow = desaturate(lighten(!base, 40), 10)
-    !background_position= "center center"
-  @else
-    !text_color = #fff
-  
-  color= !text_color
-  background-position= !background_position
-  text-shadow= !text_shadow "1px 1px 1px"
+    !active                 = !dark_color
+    !active_gradient_top    = lighten(!base, 20)
+    !active_gradient_bottom = !dark_color
+    !active_border          = mix(!darker_color, #333, 70)
+    !active_border_dark     = mix(!darker_color, #333, 70)
+    +button-state-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color)
 
-=button-colors(!base, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
+// Make the button look glossy
+=glossy-button
+  background:
+    position: right center
+    image= image_url("button_bg.png")
+
+// Apply the button colors specified for the button state into which it is mixed.
+=button-state-colors(!base, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
+  color= !text_color
   background:
     color= !base
     image= image_url("button_bg.png")
@@ -113,29 +125,19 @@
     bottom-color= !border_dark
     right-color= !border_dark
 
-=button-reset(!font_weight = !default_button_font_weight)
-  cursor: pointer
-  text-decoration: none
-  border-style: solid
-  font-weight= !font_weight
-  &::-moz-focus-inner
-    border: none
-    padding: 0
-  &:focus
-    outline: none
-
+// Apply this mixin to a nested element to style an arrow
 =button-arrow(!font_size)
   font-family: "Lucida Grande", Lucida, Arial, sans_serif
   font-size= !font_size + 4px
   line-height= !font_size - 4px
   margin-left= 4px
 
-=button-structure(!radius, !font_size, !text_color, !border_thickness, !line_height = !font_size * 2)
+// Layout the button's box
+=button-structure(!radius, !font_size, !border_thickness, !line_height = !font_size * 2)
   !v_padding = floor(!font_size/2.5)
   !h_padding = floor(!font_size*1.1)
   !v_padding_active = !v_padding - 1px
   !h_padding_active = !h_padding - 1px
-  +button-reset
   @if !radius > 0
     +border-radius(!radius)
   border-width= !border_thickness
@@ -145,3 +147,15 @@
   &:active
     border-width= !border_thickness + 1px
     padding= !v_padding_active !h_padding_active
+
+// Reset the button's important properties to make sure they behave correctly
+=button-reset(!font_weight = !default_button_font_weight)
+  cursor: pointer
+  text-decoration: none
+  border-style: solid
+  font-weight= !font_weight
+  &:-moz-focus-inner
+    border: none
+    padding: 0
+  &:focus
+    outline: none

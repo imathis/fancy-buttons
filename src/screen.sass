@@ -4,12 +4,13 @@
 @import typography.sass
 
 a.button
-  +fancy-button
   margin: 0 2px
+a.button.default
+  +fancy-button
 a.button.small
   +fancy-button(#fff, 20px, 12px, 1px)
 a.button.grey
-  +fancy-button(#666)
+  +fancy-button(#666, 0px)
 a.button.grey.dark
   +fancy-button(#333)
   +glossy-button
