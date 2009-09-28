@@ -6,12 +6,11 @@
 !default_button_radius ||= 6px
 
 =fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !base_font_size, !border_thickness= !default_button_border_thickness, !text_color = !default_button_text_color)
-  
+  +button-structure(!radius, !font_size, !text_color, !border_thickness)
   @if luminosity(!base) >= luminosity(#A2A2A2)
     +light-button(!base, !text_color)
   @else
     +dark-button(!base, !text_color)
-  +button-structure(!radius, !font_size, !text_color, !border_thickness)
 
 =light-button(!base, !text_color)
   !dark_color             = darken(!base, 50)
