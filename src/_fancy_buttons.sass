@@ -132,7 +132,8 @@
   !v_padding_active = !v_padding - 1px
   !h_padding_active = !h_padding - 1px
   +button-reset
-  +border-radius(!radius)
+  @if !radius > 0
+    +border-radius(!radius)
   border-width= !border_thickness
   font-size= !font_size
   padding= !v_padding !h_padding
