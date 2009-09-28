@@ -5,15 +5,15 @@
 !default_button_border_thickness ||= 2px
 !default_button_radius ||= 6px
 
-=fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !base_font_size, !border_thickness= !default_button_border_thickness, !text_color = !default_button_text_color, !font_weight = !default_button_font_weight)
+=fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !base_font_size, !border_thickness= !default_button_border_thickness, !text_color = !default_button_text_color)
   
   @if luminosity(!base) >= luminosity(#A2A2A2)
-    +light-button(!base, !text_color, !font_weight)
+    +light-button(!base, !text_color)
   @else
-    +dark-button(!base, !text_color, !font_weight)
+    +dark-button(!base, !text_color)
   +button-structure(!radius, !font_size, !text_color, !border_thickness)
 
-=light-button(!base, !text_color, !font_weight)
+=light-button(!base, !text_color)
   !dark_color             = darken(!base, 50)
   !darker_color           = darken(!base, 30)
 
@@ -42,9 +42,9 @@
   !text_shadow = !gradient_top
   !background_position= "center left"
   
-  +build-button(!default, !text_color, !font_weight, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
+  +build-button(!default, !text_color, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
   
-=dark-button(!base, !text_color, !font_weight)
+=dark-button(!base, !text_color)
   !dark_color             = darken(!base, 20)
   !darker_color           = darken(!base, 35)
 
@@ -80,11 +80,10 @@
   @else
     !text_color = #fff
   
-  +build-button(!default, !text_color, !font_weight, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
+  +build-button(!default, !text_color, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
 
-=build-button(!base, !text_color, !font_weight, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
+=build-button(!default, !text_color, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
   color= !text_color
-  font-weight= !font_weight
   background-position= !background_position
   /* set button colors for each state */
   +button-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
@@ -111,10 +110,11 @@
     bottom-color= !border_dark
     right-color= !border_dark
 
-+button-reset
+=button-reset(!font_weight = !default_button_font_weight)
   cursor: pointer
   text-decoration: none
   border-style: solid
+  font-weight= !font_weight
   &::-moz-focus-inner
     border: none
     padding: 0
