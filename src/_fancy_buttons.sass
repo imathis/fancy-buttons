@@ -22,26 +22,33 @@
   !gradient_bottom        = desaturate(!darker_color, 50)
   !border                 = desaturate(mix(!dark_color, #333, 50), 50)
   !border_dark            = desaturate(mix(!dark_color, #333, 50), 50)
+  +button-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
   
   /* Hover button state */
-  !hover                  = desaturate(darken(!base, 20), 50)
-  !hover_gradient_top     = lighten(!base, 50)
-  !hover_gradient_bottom  = desaturate(darken(!base, 20), 50)
-  !hover_border           = desaturate(mix(!dark_color, #333, 60), 50)
-  !hover_border_dark      = desaturate(mix(!dark_color, #333, 60), 50)
+  &:hover, &:focus
+    !hover                  = desaturate(darken(!base, 20), 50)
+    !hover_gradient_top     = lighten(!base, 50)
+    !hover_gradient_bottom  = desaturate(darken(!base, 20), 50)
+    !hover_border           = desaturate(mix(!dark_color, #333, 60), 50)
+    !hover_border_dark      = desaturate(mix(!dark_color, #333, 60), 50)
+    +button-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
   
   /* Active button state */
-  !active                 = desaturate(!darker_color, 50)
-  !active_gradient_top    = lighten(!base, 10)
-  !active_gradient_bottom = desaturate(!darker_color, 50)
-  !active_border          = desaturate(mix(!dark_color, #333, 30), 50)
-  !active_border_dark     = desaturate(mix(!dark_color, #333, 40), 50)
+  &:active
+    !active                 = desaturate(!darker_color, 50)
+    !active_gradient_top    = lighten(!base, 10)
+    !active_gradient_bottom = desaturate(!darker_color, 50)
+    !active_border          = desaturate(mix(!dark_color, #333, 30), 50)
+    !active_border_dark     = desaturate(mix(!dark_color, #333, 40), 50)
+    +button-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color)
   
   !text_color = mix(!dark_color, #000, 30)
   !text_shadow = !gradient_top
   !background_position= "center left"
   
-  +build-button(!default, !text_color, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
+  color= !text_color
+  background-position= !background_position
+  text-shadow= !text_shadow "1px 1px 1px"
   
 =glossy-button
   background:
@@ -58,6 +65,7 @@
   !gradient_bottom        = desaturate(!dark_color, 10)
   !border                 = mix(!darker_color, #333, 60)
   !border_dark            = mix(!darker_color, #333, 60)
+  +button-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
   
   /* Hover button state */
   !hover                  = lighten(!base, 10)
@@ -65,6 +73,8 @@
   !hover_gradient_bottom  = lighten(!base, 10)
   !hover_border           = mix(!darker_color, #333, 80)
   !hover_border_dark      = mix(!darker_color, #333, 80)
+  &:hover, &:focus
+    +button-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
   
   /* Active button state */
   !active                 = !dark_color
@@ -72,6 +82,8 @@
   !active_gradient_bottom = !dark_color
   !active_border          = mix(!darker_color, #333, 70)
   !active_border_dark     = mix(!darker_color, #333, 70)
+  &:active
+    +button-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color)
   
   !text_shadow = !gradient_bottom
   
@@ -84,18 +96,9 @@
   @else
     !text_color = #fff
   
-  +build-button(!default, !text_color, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
-
-=build-button(!default, !text_color, !text_shadow, !gradient_top, !gradient_bottom, !border, !border_dark, !hover, !hover_gradient_top, !hover_gradient_bottom, !hover_border, !hover_border_dark, !active, !active_gradient_top, !active_gradient_bottom, !active_border, !active_border_dark, !background_position)
   color= !text_color
   background-position= !background_position
   text-shadow= !text_shadow "1px 1px 1px"
-  /* set button colors for each state */
-  +button-colors(!default, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
-  &:hover, &:focus
-    +button-colors(!hover, !hover_border, !hover_border_dark, !hover_gradient_top, !hover_gradient_bottom, !text_color)
-  &:active
-    +button-colors(!active, !active_border, !active_border_dark, !active_gradient_top, !active_gradient_bottom, !text_color)
 
 =button-colors(!base, !border, !border_dark, !gradient_top, !gradient_bottom, !text_color)
   background:
