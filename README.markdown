@@ -12,3 +12,22 @@
 
 ## Screenshot of Demo
 ![Demo](http://s3.imathis.com/dev/compass/fancy-buttons/demo.png)
+
+## Install
+
+Install the plugin:
+
+    sudo gem install imathis-fancy-buttons
+
+Create a new project based on fancy-buttons:
+
+    compass -r compass-colors -r fancy-buttons -f fancy-buttons my_project_name
+
+Add fancy-buttons to an existing compass project:
+
+    # Add the following lines to your compass configuration file:
+    require 'compass-colors'
+    require 'fancy-buttons'
+    
+    # Then run the following command:
+    compass --install -f fancy-buttons
