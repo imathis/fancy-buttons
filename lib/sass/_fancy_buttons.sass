@@ -1,22 +1,24 @@
 @import _fancy_gradient.sass
 
 !default_button_font_size ||= 18px
-!default_button_color ||= #444
+!default_button_color ||= gray
 !default_button_font_weight ||= "bold"
 !default_button_border_width ||= 1px
 !default_button_radius ||= 6px
 
 // Make a fancy button.
-=fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !default_button_font_size, !border_width= !default_button_border_width)
-  +fancy-button-structure(!radius, !font_size, !border_width)
-  +fancy-button-colors(!base)
+=fancy-button(!color= !default_button_color, !radius= !default_button_radius, !font_size= !default_button_font_size, !border_width= !default_button_border_width)
+  +fancy-button-structure(!font_size, !radius, !border_width)
+  +fancy-button-colors(!color)
 
 // Style the button's colors, picking the most appropriate color set for the base color.
-=fancy-button-colors(!base, !hover = !base, !active = !base)
-  !hover = darken(!color, 10)
-  !active = darken(!color, 20)
+=fancy-button-colors(!color, !hover = 0, !active = 0)
+  @if !hover == 0
+    !hover = darken(!color, 10)
+  @if !active == 0
+    !active = darken(!color, 20)
   
-  +fb-color(!base)
+  +fb-color(!color)
   &:hover, &:focus
     +fb-color(!hover)
   &:active
@@ -30,10 +32,9 @@
   +fb-state-colors(!color, !gradient_top, !gradient_bottom, !border_color)
 
 // Apply the button colors specified for the button state into which it is mixed.
-=fb-state-colors(!base, !gradient_top, !gradient_bottom, !border)
-  !text_shadow = darken(!base, 25)
-  background= !base url(/images/button_bg.png) "repeat-x bottom left"
-  background: #{!base} #{image_url("/images/btn_shade.png")} repeat-x bottom left
+=fb-state-colors(!color, !gradient_top, !gradient_bottom, !border)
+  !text_shadow = darken(!color, 25)
+  background: #{!color} #{image_url("button_bg.png")} repeat-x bottom left
   +fancy-gradient(!gradient_top, !gradient_bottom)
   text-shadow= !text_shadow "1px 1px 1px"
   border:
@@ -49,22 +50,26 @@
 // Layout the button's box
 =fancy-button-structure(!font_size = !default_button_font_size, !radius = !default_button_radius, !border_width = !default_button_border_width, !line_height = !font_size * 1.2)
   +fb-reset
-  background= url(/images/button_bg.png) "repeat-x bottom left"
+  @if !radius > 0
+    +border-radius(!radius)
+  border-width= !border_width
+  +fancy-button-size(!font_size, !line_height)
+  &:active
+    border-width= !border_width + 1px
+  &.disabled:active
+    border-width= !border_width
+
+=fancy-button-size(!font_size = !default_button_font_size, !line_height = !font_size * 1.2)
   !v_padding = floor(!font_size/2.5)
   !h_padding = floor(!font_size)
   !v_padding_active = !v_padding - 1px
   !h_padding_active = !h_padding - 1px
-  @if !radius > 0
-    +border-radius(!radius)
-  border-width= !border_width
-  font-size= !font_size
   padding= !v_padding !h_padding
+  font-size= !font_size
   line-height= !line_height
   &:active
-    border-width= !border_width + 1px
     padding= !v_padding_active !h_padding_active
   &.disabled:active
-    border-width= !border_width
     padding= !v_padding !h_padding
 
 // Reset the button's important properties to make sure they behave correctly

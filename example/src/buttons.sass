@@ -1,8 +1,58 @@
-@import compass/reset.sass
 @import border_radius.sass
 @import fancy_buttons.sass
 
-a.button
+/* primaries */
+!blue = blue
+!red = red
+!yellow = darken(desaturate(yellow, 10), 5)
+/* secondaires */
+!purple = adjust_hue(mix(!blue,!red), -15)
+!green = lighten(desaturate(green, 5), 20)
+!orange = mix(!yellow, !red)
+
+!light_blue = adjust_hue(lighten(!blue, 15), -20)
+!dark_gray = #333
+
+
+
+a.button, button
+  +fancy-button
   margin: 0 2px
   color: #fff
-  +button-structure
+  &.purple
+    +fancy-button-colors(!purple)
+  &.blue
+    +fancy-button-colors(!blue)
+    &.light
+      +fancy-button-colors(!light_blue)
+    &.cool
+      +fancy-button-colors(!blue, !light_blue, !blue)
+  &.green
+    +fancy-button-colors(!green)
+  &.fuchsia
+    +fancy-button-colors(fuchsia)
+  &.yellow
+    +fancy-button-colors(!yellow)
+  &.red
+    +fancy-button-colors(!red)
+    &.fire
+      +fancy-button-colors(!red, !orange, !yellow)
+  &.orange
+    +fancy-button-colors(!orange)
+  &.white
+    +fancy-button-colors(white)
+    color: #333
+  &.silver
+    +fancy-button-colors(silver)
+  &.black
+    +fancy-button-colors(black)
+  &.small
+    +fancy-button-size(12px)
+    +border-radius(8px)
+  &.rounded
+    +fancy-button-size(24px)
+    +border-radius(25px)
+  &.dark_gray
+    +fancy-button-colors(!dark_gray)
+  &.square
+    +border-radius(0)
