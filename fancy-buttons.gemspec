@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
      "lib/fancy-buttons.rb",
      "lib/sass/_border_radius.sass",
      "lib/sass/_fancy_buttons.sass",
-     "lib/sass/_gradient.sass",
+     "lib/sass/_fancy_gradient.sass",
      "lib/templates/project/button_bg.png",
      "lib/templates/project/buttons.sass",
      "lib/templates/project/index.html",

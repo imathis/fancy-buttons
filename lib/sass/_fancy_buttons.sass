@@ -1,3 +1,5 @@
+@import _fancy_gradient.sass
+
 !default_buton_font_size ||= 18px
 !default_button_color ||= #444
 !default_button_font_weight ||= "bold"
@@ -28,19 +30,20 @@
 
 // Hover state color settings
 =hover-button-color(!color)
-  !hover = darken(!color, 6)
+  !hover = darken(!color, 10)
   +button-color(!hover)
 
 // Active state color settings
 =active-button-color(!color)
-  !active = darken(!color, 12)
+  !active = darken(!color, 20)
   +button-color(!active)
 
 // Apply the button colors specified for the button state into which it is mixed.
 =button-state-colors(!base, !gradient_top, !gradient_bottom, !border)
-  background= !base url(/images/btn_shade.png) "repeat-x bottom left"
-  +v-button-gradient(!gradient_top, !gradient_bottom)
   !text_shadow = darken(!base, 25)
+  background= !base url(/images/button_bg.png) "repeat-x bottom left"
+  background: #{!base} #{image_url("/images/btn_shade.png")} repeat-x bottom left
+  +fancy-button-gradient(!gradient_top, !gradient_bottom)
   text-shadow= !text_shadow "1px 1px 1px"
   border:
     color= !border
