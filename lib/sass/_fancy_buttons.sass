@@ -1,63 +1,54 @@
 @import _fancy_gradient.sass
 
-!default_buton_font_size ||= 18px
+!default_button_font_size ||= 18px
 !default_button_color ||= #444
 !default_button_font_weight ||= "bold"
 !default_button_border_width ||= 1px
 !default_button_radius ||= 6px
 
 // Make a fancy button.
-=fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !default_buton_font_size, !border_width= !default_button_border_width)
-  +button-structure(!radius, !font_size, !border_width)
+=fancy-button(!base= !default_button_color, !radius= !default_button_radius, !font_size= !default_button_font_size, !border_width= !default_button_border_width)
+  +fancy-button-structure(!radius, !font_size, !border_width)
   +fancy-button-colors(!base)
 
 // Style the button's colors, picking the most appropriate color set for the base color.
 =fancy-button-colors(!base, !hover = !base, !active = !base)
-  +button-color(!base)
+  !hover = darken(!color, 10)
+  !active = darken(!color, 20)
   
+  +fb-color(!base)
   &:hover, &:focus
-    +hover-button-color(!hover)
-    
+    +fb-color(!hover)
   &:active
-    +active-button-color(!active)
+    +fb-color(!active)
 
 // Default state color settings
-=button-color(!color)
+=fb-color(!color)
   !gradient_top = lighten(!color, 30)
   !gradient_bottom = darken(!color, 20)
   !border_color = darken(!color, 25)
-  +button-state-colors(!color, !gradient_top, !gradient_bottom, !border_color)
-
-// Hover state color settings
-=hover-button-color(!color)
-  !hover = darken(!color, 10)
-  +button-color(!hover)
-
-// Active state color settings
-=active-button-color(!color)
-  !active = darken(!color, 20)
-  +button-color(!active)
+  +fb-state-colors(!color, !gradient_top, !gradient_bottom, !border_color)
 
 // Apply the button colors specified for the button state into which it is mixed.
-=button-state-colors(!base, !gradient_top, !gradient_bottom, !border)
+=fb-state-colors(!base, !gradient_top, !gradient_bottom, !border)
   !text_shadow = darken(!base, 25)
   background= !base url(/images/button_bg.png) "repeat-x bottom left"
   background: #{!base} #{image_url("/images/btn_shade.png")} repeat-x bottom left
-  +fancy-button-gradient(!gradient_top, !gradient_bottom)
+  +fancy-gradient(!gradient_top, !gradient_bottom)
   text-shadow= !text_shadow "1px 1px 1px"
   border:
     color= !border
 
 // Apply this mixin to a nested element to style an arrow
-=button-arrow(!font_size)
+=fancy-arrow(!font_size)
   font-family: "Lucida Grande", Lucida, Arial, sans_serif
   font-size= !font_size + 4px
   line-height= !font_size - 4px
   margin-left= 4px
 
 // Layout the button's box
-=button-structure(!radius, !font_size, !border_width, !line_height = !font_size * 1.2)
-  +button-reset
+=fancy-button-structure(!font_size = !default_button_font_size, !radius = !default_button_radius, !border_width = !default_button_border_width, !line_height = !font_size * 1.2)
+  +fb-reset
   background= url(/images/button_bg.png) "repeat-x bottom left"
   !v_padding = floor(!font_size/2.5)
   !h_padding = floor(!font_size)
@@ -77,7 +68,7 @@
     padding= !v_padding !h_padding
 
 // Reset the button's important properties to make sure they behave correctly
-=button-reset(!font_weight = !default_button_font_weight)
+=fb-reset(!font_weight = !default_button_font_weight)
   margin: 0
   padding: 0
   display: inline-block
