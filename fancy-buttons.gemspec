@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/fancy-buttons.rb",
     "lib/sass/_border_radius.sass",
+    "lib/sass/_gradient.sass",
     "lib/sass/_fancy_buttons.sass",
     "lib/templates/project/button_bg.png",
     "lib/templates/project/buttons.sass",
