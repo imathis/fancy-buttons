@@ -10,6 +10,17 @@
   background= "-moz-linear-gradient(#{!gradient})"
 
 =fancy-gradient(!color1, !color2)
+  !top_shine = lighten(!color1, .18)
+  !top_middle = !color1
+  !middle = lighten(!color2, .03)
+  !bottom_middle = !color2
+  !bottom_glow = lighten(!color2, .1)
+  !stop_pos_1 = .1
+  !stop_pos_2 = .5
+  !stop_pos_3 = .5
+  +fancy-linear-gradient("left top", "left bottom", !top_shine, !bottom_glow, !top_middle, !stop_pos_1, !middle, !stop_pos_2, !bottom_middle, !stop_pos_3)
+
+=fancy-gradient-old(!color1, !color2)
   !start = lighten(!color1, 25)
   !end = mix(!color1, !color2, 60)
   !stop_pos_1 = .1
