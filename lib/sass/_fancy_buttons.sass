@@ -34,8 +34,8 @@
 
 // Apply the button colors specified for the button state into which it is mixed.
 =fb-state-colors(!color, !gradient_top, !gradient_bottom, !border)
-  !text_shadow = darken(!color, .25)
-  background: #{!color} url("/images/button_bg.png") repeat-x bottom left
+  !text_shadow = darken(!color, 25)
+  background: #{!color} #{image_url("button_bg.png")} repeat-x bottom left
   +fancy-gradient(!gradient_top, !gradient_bottom)
   text-shadow= !text_shadow "1px 1px 1px"
   border:
