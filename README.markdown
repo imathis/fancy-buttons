@@ -11,7 +11,7 @@
 - Provide a decent alternative styling for ie6
 
 ## Screenshot of Demo
-![Demo](http://s3.imathis.com/dev/compass/fancy-buttons/demo.png)
+![Demo](http://img.skitch.com/20091118-xbiqj7fmd7938wma5s7hbj8a9x.jpg)
 
 ## Install
 
