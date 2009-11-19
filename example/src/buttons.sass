@@ -1,58 +1,33 @@
-@import border_radius.sass
 @import fancy_buttons.sass
 
-/* primaries */
-!blue = blue
-!red = red
-!yellow = darken(desaturate(yellow, 10), 5)
-/* secondaires */
-!purple = adjust_hue(mix(!blue,!red), -15)
-!green = lighten(desaturate(green, 5), 20)
-!orange = mix(!yellow, !red)
+body
+  text-align: center
+  padding-top: 10px
+h1
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 50px
+  color: #333
+  letter-spacing: -1px
+div
+  margin-top: 15px
 
-!light_blue = adjust_hue(lighten(!blue, 15), -20)
-!dark_gray = #333
+!green = darken(#57b42c, 8)
+!blue = adjust_hue(!green, 110)
+!red = adjust_hue(!green, -100)
 
-
-
-a.button, button
-  +fancy-button
+a.button, button  
+  +fancy-button-structure
+  +fancy-button-colors
   margin: 0 2px
-  color: #fff
-  &.purple
-    +fancy-button-colors(!purple)
-  &.blue
-    +fancy-button-colors(!blue)
-    &.light
-      +fancy-button-colors(!light_blue)
-    &.cool
-      +fancy-button-colors(!blue, !light_blue, !blue)
+  vertical-align: middle
+  &.light
+    +fancy-button-colors(#bbb)
   &.green
     +fancy-button-colors(!green)
-  &.fuchsia
-    +fancy-button-colors(fuchsia)
-  &.yellow
-    +fancy-button-colors(!yellow)
+  &.blue
+    +fancy-button-colors(!blue)
+    +fancy-button-size(32px, 32px)
   &.red
     +fancy-button-colors(!red)
-    &.fire
-      +fancy-button-colors(!red, !orange, !yellow)
-  &.orange
-    +fancy-button-colors(!orange)
-  &.white
-    +fancy-button-colors(white)
-    color: #333
-  &.silver
-    +fancy-button-colors(silver)
-  &.black
-    +fancy-button-colors(black)
-  &.small
-    +fancy-button-size(12px)
-    +border-radius(8px)
-  &.rounded
-    +fancy-button-size(24px)
-    +border-radius(25px)
-  &.dark_gray
-    +fancy-button-colors(!dark_gray)
-  &.square
-    +border-radius(0)
+  &.yellow
+    +fancy-button-colors(darken(desaturate(yellow, 35), 5))

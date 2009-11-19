@@ -4,9 +4,9 @@ begin
     gemspec.name = "fancy-buttons"
     gemspec.summary = "Make fancy buttons with the Compass stylesheet authoring framework."
     gemspec.description = "Make fancy buttons with the Compass stylesheet authoring framework."
-    gemspec.email = "imathis@me.com"
+    gemspec.email = "brandon@imathis.com"
     gemspec.homepage = "http://github.com/imathis/fancy-buttons"
-    gemspec.authors = ["Brandon Mathis", "Chris Eppstein"]
+    gemspec.author = "Brandon Mathis"
     gemspec.files = []
     gemspec.files << "fancy-buttons.gemspec"
     gemspec.files << "README.markdown"

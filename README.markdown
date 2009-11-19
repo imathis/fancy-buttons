@@ -1,17 +1,5 @@
-# Project Goals:
-
-- Generate a color palette from the base color
-- Discern sensible palette variations based on a base color (dark, medium, light)
-- Allow button style types (subtle gradient, shiny gradient)
-- Make it easy to override/modify styles
-- Reduce weight of generated styles (define button base, add color through additional classes)
-- Create good defaults
-- Ensure approximate consistency for browsers that don't support CSS gradients
-- Style the button element
-- Provide a decent alternative styling for ie6
-
-## Screenshot of Demo
-![Demo](http://img.skitch.com/20091118-xbiqj7fmd7938wma5s7hbj8a9x.jpg)
+# Demo
+![Demo](http://s3.imathis.com/dev/compass/fancy-buttons/demo.png)
 
 ## Install
 
@@ -30,4 +18,16 @@ Add fancy-buttons to an existing compass project:
     require 'fancy-buttons'
     
     # Then run the following command:
-    compass --install -f fancy-buttons
+    compass -i -f fancy-buttons
+
+# Project Goals:
+
+- Generate a color palette from the base color
+- Discern sensible palette variations based on a base color (dark, medium, light)
+- Allow button style types (subtle gradient, shiny gradient)
+- Make it easy to override/modify styles
+- Reduce weight of generated styles (define button base, add color through additional classes)
+- Create good defaults
+- Ensure approximate consistency for browsers that don't support CSS gradients
+- Style the button element
+- Provide a decent alternative styling for ie6

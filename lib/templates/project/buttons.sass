@@ -1,9 +1,33 @@
-@import compass/reset.sass
-@import compass/css3.sass
 @import fancy_buttons.sass
 
-a.button
+body
+  text-align: center
+  padding-top: 10px
+h1
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 50px
+  color: #333
+  letter-spacing: -1px
+div
+  margin-top: 15px
+
+!green = darken(#57b42c, 8)
+!blue = adjust_hue(!green, 110)
+!red = adjust_hue(!green, -100)
+
+a.button, button  
+  +fancy-button-structure
+  +fancy-button-colors
   margin: 0 2px
-  color: #fff
-a.button.default
-  +fancy-button
+  vertical-align: middle
+  &.light
+    +fancy-button-colors(#bbb)
+  &.green
+    +fancy-button-colors(!green)
+  &.blue
+    +fancy-button-colors(!blue)
+    +fancy-button-size(32px, 32px)
+  &.red
+    +fancy-button-colors(!red)
+  &.yellow
+    +fancy-button-colors(darken(desaturate(yellow, 35), 5))

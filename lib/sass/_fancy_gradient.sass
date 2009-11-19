@@ -5,16 +5,16 @@
   @if !color_stop_2 != 0
     !gradient = "#{!from_coord}, #{!to_coord}, from(#{!color_start}), to(#{!color_end}), color-stop(#{!color_stop_1_pos}, #{!color_stop_1}), color-stop(#{!color_stop_2_pos}, #{!color_stop_2})"
   @if !color_stop_3 != 0
-    !gradient = "#{!from_coord}, #{!to_coord}, from(#{!color_start}), to(#{!color_end}), color-stop(#{!color_stop_1_pos}, #{!color_stop_1}), color-stop(#{!color_stop_2_pos}, #{!color_stop_2})"
+    !gradient = "#{!from_coord}, #{!to_coord}, from(#{!color_start}), to(#{!color_end}), color-stop(#{!color_stop_1_pos}, #{!color_stop_1}), color-stop(#{!color_stop_2_pos}, #{!color_stop_2}), color-stop(#{!color_stop_3_pos}, #{!color_stop_3})"
   background= "-webkit-gradient(linear, #{!gradient})"
   background= "-moz-linear-gradient(#{!gradient})"
 
 =fancy-gradient(!color1, !color2)
-  !top_shine = lighten(!color1, .18)
+  !top_shine = lighten(!color1, 18)
   !top_middle = !color1
-  !middle = lighten(!color2, .03)
+  !middle = lighten(!color2, 3)
   !bottom_middle = !color2
-  !bottom_glow = lighten(!color2, .1)
+  !bottom_glow = lighten(!color2, 10)
   !stop_pos_1 = .1
   !stop_pos_2 = .5
   !stop_pos_3 = .5
