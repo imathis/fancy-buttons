@@ -1,17 +1,25 @@
 # Demo
-![Demo](http://s3.imathis.com/dev/compass/fancy-buttons/demo.png)
+![screenshot](http://s3.imathis.com/dev/compass/fancy-buttons/demo.png)
+
+Without CSS gradient support:
+![screenshot](http://s3.imathis.com/dev/compass/fancy-buttons/demo-no-gradients.png)
+
 
 ## Install
 
 Install the plugin:
 
-    sudo gem install imathis-fancy-buttons
+    sudo gem install fancy-buttons
 
-Create a new project based on fancy-buttons:
+If you don't have compass colors 0.3.1
+    
+    sudo gem install compass-colors
 
-    compass -r compass-colors -r fancy-buttons -f fancy-buttons my_project_name
+To create a new project based on fancy-buttons:
 
-Add fancy-buttons to an existing compass project:
+    compass -r compass-colors -r fancy-buttons -f fancy-buttons your_project_name
+
+To add fancy-buttons to an existing compass project:
 
     # Add the following lines to your compass configuration file:
     require 'compass-colors'
