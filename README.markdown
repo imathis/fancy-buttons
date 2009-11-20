@@ -1,4 +1,7 @@
-# Demo
+## Using fancy buttons on your site?
+Add a link to the [wiki](http://wiki.github.com/imathis/fancy-buttons)
+
+## Demo
 ![screenshot](http://s3.imathis.com/dev/compass/fancy-buttons/demo.png)
 
 Without CSS gradient support:  
