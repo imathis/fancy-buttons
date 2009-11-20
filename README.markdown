@@ -1,7 +1,7 @@
 # Demo
 ![screenshot](http://s3.imathis.com/dev/compass/fancy-buttons/demo.png)
 
-Without CSS gradient support:
+Without CSS gradient support:  
 ![screenshot](http://s3.imathis.com/dev/compass/fancy-buttons/demo-no-gradients.png)
 
 
