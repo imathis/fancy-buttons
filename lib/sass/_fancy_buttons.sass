@@ -65,14 +65,15 @@
     border-width= !border_width
 
 =fancy-button-size(!font_size = !default_button_font_size, !radius = !default_button_radius, !line_height = !font_size * 1.2)
-  // for smaller font-sizes, the default vertical padding is too large resulting in unbalanced button
-  !v_padding = 0
+
+  // better padding for smaller buttons
   @if !font_size > 15
     !v_padding = floor(!font_size/3.5)
+    !h_padding = !font_size
   @else
-    !v_padding = floor(!font_size/6.5)
-
-  !h_padding = floor(!font_size)
+    !v_padding = floor(!font_size/5)
+    !h_padding = floor(!font_size/1.2)
+  
   !v_padding_active = !v_padding - 1px
   !h_padding_active = !h_padding - 1px
   @if !radius > 0
