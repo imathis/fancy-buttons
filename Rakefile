@@ -7,8 +7,8 @@ begin
     gemspec.email = "brandon@imathis.com"
     gemspec.homepage = "http://github.com/imathis/fancy-buttons"
     gemspec.author = "Brandon Mathis"
-    gemspec.add_dependency('haml', '>= 2.2')
-    gemspec.add_dependency('compass', '>= 0.8')
+    gemspec.add_dependency('haml', '>= 2.2.14')
+    gemspec.add_dependency('compass', '>= 0.10')
     gemspec.add_dependency('compass-colors', '>= 0.3.1')
     gemspec.files = []
     gemspec.files << "fancy-buttons.gemspec"

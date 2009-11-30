@@ -1,4 +1,4 @@
-@import border_radius.sass
+@import compass/css3.sass
 @import fancy_gradient.sass
 
 !default_button_font_size ||= 18px
@@ -57,15 +57,9 @@
 // Layout the button's box
 =fancy-button-structure(!font_size = !default_button_font_size, !radius = !default_button_radius, !border_width = !default_button_border_width, !line_height = !font_size * 1.2)
   +fb-reset
-  +fancy-button-size(!font_size, !radius, !line_height)
-  border-width= !border_width
-  &:active
-    border-width= !border_width + 1px
-  &.disabled:active
-    border-width= !border_width
+  +fancy-button-size(!font_size, !radius, !border_width, !line_height)
 
-=fancy-button-size(!font_size = !default_button_font_size, !radius = !default_button_radius, !line_height = !font_size * 1.2)
-
+=fancy-button-size(!font_size = !default_button_font_size, !radius = !default_button_radius, !border_width = !default_button_border_width, !line_height = !font_size * 1.2)
   // better padding for smaller buttons
   !v_padding = 0
   !h_padding = 0
@@ -83,10 +77,13 @@
   padding= !v_padding !h_padding
   font-size= !font_size
   line-height= !line_height
+  border-width= !border_width
   &:active
     padding= !v_padding_active !h_padding_active
+    border-width= !border_width + 1px
   &.disabled:active
     padding= !v_padding !h_padding
+    border-width= !border_width
 
 // Reset the button's important properties to make sure they behave correctly
 =fb-reset(!font_weight = !default_button_font_weight)
