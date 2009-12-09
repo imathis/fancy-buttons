@@ -6,6 +6,8 @@
 !default_button_font_weight ||= "bold"
 !default_button_border_width ||= 1px
 !default_button_radius ||= 6px
+!default_button_light_text ||= #fff
+!default_button_dark_text ||= #222
 
 // Make a fancy button.
 =fancy-button(!color= !default_button_color, !font_size= !default_button_font_size, !radius= !default_button_radius, !border_width= !default_button_border_width)
@@ -14,40 +16,48 @@
 
 // Style the button's colors, picking the most appropriate color set for the base color.
 =fancy-button-colors(!color = !default_button_color, !hover = 0, !active = 0)
-  @if !hover == 0
-    !hover = darken(!color, 3)
-  @if !active == 0
-    !active = darken(!color, 6)
-  
   +fb-color(!color)
   &:hover, &:focus
-    +fb-color(!hover)
+    @if !hover == 0
+      +fb-color(darken(!color, 3), !color)
+    @else
+      +fb-color(!hover)
   &:active
-    +fb-color(!active)
+    @if !active == 0
+      +fb-color(darken(!color, 6), !color)
+    @else
+      +fb-color(!active)
 
 // Default state color settings
-=fb-color(!color)
+=fb-color(!color, !lumins = !color)
   !gradient_top = lighten(!color, 15)
   !gradient_bottom = darken(!color, 06)
   !border_color = darken(!color, 08)
   @if saturation(!color) > 0
     !color = saturate(!color, 40)
-  +fb-state-colors(!color, !gradient_top, !gradient_bottom, !border_color)
+  +fb-state-colors(!color, !gradient_top, !gradient_bottom, !border_color, !lumins)
 
 // Apply the button colors specified for the button state into which it is mixed.
-=fb-state-colors(!color, !gradient_top, !gradient_bottom, !border)
-  !text_shadow = darken(!color, 25)
-  color: #fff
+=fb-state-colors(!color, !gradient_top, !gradient_bottom, !border, !lumins = !color)
   background-color= !color
   +fancy-gradient(!gradient_top, !gradient_bottom)
-  @if luminosity(!color) < luminosity(#aaa)
-    text-shadow= !text_shadow "1px 1px 1px"
-  @else
-    text-shadow= lighten(!color, 10) "1px 1px 1px"
-    color: #333
   border:
     color= !border
+  @if luminosity(!lumins) < luminosity(#aaa)
+    text-shadow= darken(!color, 25) "1px 1px 1px"
+    color= !default_button_light_text
+  @else
+    text-shadow= lighten(!color, 15) "1px 1px 1px"
+    color= !default_button_dark_text
 
+=fb-text-color(!text, !bg, !force_color = 0)
+  @if !override
+    color= !override
+    text-shadow= darken(!bg, 10) "1px 1px 1px"
+  @else
+    color= !color
+    text-shadow= darken(!bg, 10) "1px 1px 1px"
+  
 // Apply this mixin to a nested element to style an arrow
 =fancy-arrow(!font_size)
   font-size= !font_size + 4px
@@ -90,6 +100,8 @@
   font-family: "Lucida Grande", Lucida, Arial, sans_serif
   background: #{image_url("button_bg.png")} repeat-x bottom left
   margin: 0
+  width: auto
+  overflow: visible
   display: inline-block
   cursor: pointer
   text-decoration: none
