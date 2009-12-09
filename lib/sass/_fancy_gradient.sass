@@ -1,21 +1,28 @@
-=fancy-linear-gradient(!from_coord, !to_coord, !color_start, !color_end, !color_stop_1 = 0, !color_stop_1_pos = .3, !color_stop_2 = 0, !color_stop_2_pos = .6, !color_stop_3 = 0, !color_stop_3_pos = .9)
-  !gradient = "#{!from_coord}, #{!to_coord}, from(#{!color_start}), to(#{!color_end})"
-  @if !color_stop_1 != 0
-    !gradient = "#{!from_coord}, #{!to_coord}, from(#{!color_start}), to(#{!color_end}), color-stop(#{!color_stop_1_pos}, #{!color_stop_1})"
-  @if !color_stop_2 != 0
-    !gradient = "#{!from_coord}, #{!to_coord}, from(#{!color_start}), to(#{!color_end}), color-stop(#{!color_stop_1_pos}, #{!color_stop_1}), color-stop(#{!color_stop_2_pos}, #{!color_stop_2})"
-  @if !color_stop_3 != 0
-    !gradient = "#{!from_coord}, #{!to_coord}, from(#{!color_start}), to(#{!color_end}), color-stop(#{!color_stop_1_pos}, #{!color_stop_1}), color-stop(#{!color_stop_2_pos}, #{!color_stop_2}), color-stop(#{!color_stop_3_pos}, #{!color_stop_3})"
-  background= "-webkit-gradient(linear, #{!gradient})"
-  background= "-moz-linear-gradient(#{!gradient})"
-
 =fancy-gradient(!color1, !color2)
   !top_shine = lighten(!color1, 18)
+  !bottom_glow = lighten(!color2, 10)
   !top_middle = !color1
   !middle = lighten(!color2, 3)
   !bottom_middle = !color2
-  !bottom_glow = lighten(!color2, 10)
-  !stop_pos_1 = .1
-  !stop_pos_2 = .5
-  !stop_pos_3 = .5
-  +fancy-linear-gradient("left top", "left bottom", !top_shine, !bottom_glow, !top_middle, !stop_pos_1, !middle, !stop_pos_2, !bottom_middle, !stop_pos_3)
+  +v-gradient(!top_shine, !bottom_glow, color_stop(10%, !top_middle, 50%, !middle, 50%, !bottom_middle))
+
+=invert-fancy-gradient(!color1, !color2)
+  !top = lighten(!color2, 6)
+  !bottom = lighten(!color2, 14)
+  !top_middle = lighten(!color2, 8)
+  !middle = lighten(!color2, 4)
+  !bottom_middle = lighten(!color2, 1)
+  +v-gradient(!top, !bottom, color_stop(30%, !top_middle, 50%, !middle, 50%, !bottom_middle))
+
+=fancy-matte-gradient(!color1, !color2)
+  +v-gradient(!color1, !color2)
+
+=invert-fancy-matte-gradient(!color1, !color2)
+  !top = lighten(!color2, 5)
+  !bottom = lighten(!color2, 15)
+  !middle = lighten(!color2, 8)
+  +v-gradient(!top, !bottom, color_stop(85%, !middle, 40%, !middle))
+
+/* incase an inverted custom gradient isn't specified */
+=invert-custom-fancy-gradient(!color1, !color2)
+  +custom-fancy-gradient(!color1, !color2)
