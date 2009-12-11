@@ -18,7 +18,7 @@ New:
 * Use your own custom gradients (horizontal, vertical, or radial)!
 * New matte gradient
 * Improved gradient click style (looks inverted)
-* Set project-wide gradient type !fb-gradient-type = "glossy", "matte", "custom" (default is glossy)
+* Set project-wide gradient type !fb\_gradient\_type = "glossy", "matte", "custom" (default is glossy)
 * Directly specify button padding with +fancy-button-padding(h\_padding, v\_padding, {border\_width})
 * New demo showing glossy, matte, and custom gradients (includes a radial gradient demo)
 
