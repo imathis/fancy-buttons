@@ -28,7 +28,8 @@ Fixes:
 
 Changes: 
 
-* **Important** Global defaults have changed from the prefix "!default\_button\_" to the prefix "!fb_". If you were using global project defaults
+* **Important:** * You must use `sudo gem install compass --pre` since rubygems doesn't install prerelease gem versions automatically.
+* **Important:** Global defaults have changed from the prefix "!default\_button\_" to the prefix "!fb_". If you were using global project defaults
   update them or your buttons will break with this update. The reason for the change was to use a more specific namespace
   to avoid global variable interactions.
 * Now requiring Haml 2.2.14 and Compass 0.10.0.pre2 (for new gradient mixin)
