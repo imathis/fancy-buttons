@@ -1,5 +1,16 @@
 # Fancy Buttons Changelog
 
+## 0.3.6
+
+New:
+
+* CSS gradients can be disabled using !fb_gradient = 0 (mostly for testing purposes)
+
+Fixes:
+
+* Background color for buttons lighter than #aaa have been lightened to more closely match the gradient version.
+
+
 ## 0.3.5
 
 New:
