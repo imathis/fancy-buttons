@@ -10,6 +10,7 @@
 !fb_radius ||= 6px
 !fb_light_text ||= #fff
 !fb_dark_text ||= #222
+!fb_gradient ||= 1
 
 // Make a fancy button.
 =fancy-button(!color= !fb_color, !font_size= !fb_font_size, !radius= !fb_radius, !border_width= !fb_border_width)
@@ -59,26 +60,29 @@
     !border_color = darken(!color, 15)
   @if saturation(!color) > 0
     !color = saturate(!color, 40)
+  @else if luminosity(!lumins) >= luminosity(#aaa)
+    !color = lighten(!color, 20)
   +fb-state-colors(!color, !gradient_top, !gradient_bottom, !border_color, !state, !lumins)
 
 // Apply the button colors specified for the button state into which it is mixed.
 =fb-state-colors(!color, !gradient_top, !gradient_bottom, !border, !state, !lumins = !color)
   background-color= !color
-  @if !fb_gradient_style == "glossy"
-    @if !fb_invert_on_click != 0 and !state == "active"
-      +invert-fancy-gradient(!gradient_top, !gradient_bottom)
-    @else
-      +fancy-gradient(!gradient_top, !gradient_bottom)
-  @else if !fb_gradient_style == "matte"
-    @if !fb_invert_on_click and !state == "active"
-      +invert-fancy-matte-gradient(!gradient_top, !gradient_bottom)
-    @else
-      +fancy-matte-gradient(!gradient_top, !gradient_bottom)
-  @else if !fb_gradient_style == "custom"
-    @if !fb_invert_on_click and !state == "active"
-      +invert-custom-fancy-gradient(!gradient_top, !gradient_bottom)
-    @else
-      +custom-fancy-gradient(!gradient_top, !gradient_bottom)
+  @if !fb_gradient != 0
+    @if !fb_gradient_style == "glossy"
+      @if !fb_invert_on_click != 0 and !state == "active"
+        +invert-fancy-gradient(!gradient_top, !gradient_bottom)
+      @else
+        +fancy-gradient(!gradient_top, !gradient_bottom)
+    @else if !fb_gradient_style == "matte"
+      @if !fb_invert_on_click and !state == "active"
+        +invert-fancy-matte-gradient(!gradient_top, !gradient_bottom)
+      @else
+        +fancy-matte-gradient(!gradient_top, !gradient_bottom)
+    @else if !fb_gradient_style == "custom"
+      @if !fb_invert_on_click and !state == "active"
+        +invert-custom-fancy-gradient(!gradient_top, !gradient_bottom)
+      @else
+        +custom-fancy-gradient(!gradient_top, !gradient_bottom)
   border:
     color= !border
   !text_shadow_settings = "0px 1px 1px"
