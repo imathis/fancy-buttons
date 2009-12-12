@@ -11,16 +11,13 @@ Without CSS gradient support:
 ## Install
 
 Install the plugin:
-
+    sudo gem install compass --pre
     sudo gem install fancy-buttons
 
-If you don't have compass colors 0.3.1
-    
-    sudo gem install compass-colors
 
 To create a new project based on fancy-buttons:
 
-    compass -r compass-colors -r fancy-buttons -f fancy-buttons your_project_name
+    compass -r compass-colors -r fancy-buttons -f fancy-buttons project_directory
 
 To add fancy-buttons to an existing compass project:
 
@@ -29,7 +26,7 @@ To add fancy-buttons to an existing compass project:
     require 'fancy-buttons'
     
     # Then run the following command:
-    compass -i -f fancy-buttons
+    compass -r fancy-buttons -f fancy-buttons project_directory
 
 # Project Goals:
 
