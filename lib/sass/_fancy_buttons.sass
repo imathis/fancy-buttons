@@ -95,6 +95,15 @@
     text-shadow= lighten(!color, 15) !text_shadow_settings
     color= !fb_dark_text
 
+=fancy-button-text-colors(!color, !hover, !active)
+  color= !color
+  &:hover, &:focus
+    color= !hover
+  &:active
+    color= !active
+  &.disabled:active, &.disabled:hover
+    color= !color
+
 // Apply this mixin to a nested element to style an arrow
 =fancy-arrow(!font_size)
   font-size= !font_size + 4px
@@ -155,5 +164,5 @@
 
 =disable-button(!opacity = .7)
   +opacity(!opacity)
-  &:hover
+  &:hover, &:focus
     cursor: default
