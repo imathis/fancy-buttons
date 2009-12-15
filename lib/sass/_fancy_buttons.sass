@@ -20,6 +20,8 @@
 // Style the button's colors, picking the most appropriate color set for the base color.
 =fancy-button-colors(!color = !fb_color, !hover = 0, !active = 0)
   +fb-color(!color, "default")
+  &.disabled:active, &.disabled:hover, &[disabled]:active, &[disabled]:hover
+    +fb-color(!color, "default")
   &:hover, &:focus
     @if !hover == 0
       +fb-color(darken(!color, 3), "hover", !color)
@@ -101,7 +103,7 @@
     color= !hover
   &:active
     color= !active
-  &.disabled:active, &.disabled:hover
+  &.disabled:active, &.disabled:hover, &[disabled]:active, &[disabled]:hover
     color= !color
 
 // Apply this mixin to a nested element to style an arrow
@@ -140,7 +142,7 @@
   &:active
     padding= !v_padding_active !h_padding_active
     border-width= !border_width + 1px
-  &.disabled:active
+  &.disabled:active, &[disabled]
     padding= !v_padding !h_padding
     border-width= !border_width
 
@@ -161,6 +163,8 @@
     padding: 0
   &:focus
     outline: none
+  &.disabled, &[disabled]
+    +disable-button
 
 =disable-button(!opacity = .7)
   +opacity(!opacity)
