@@ -1,5 +1,16 @@
 # Fancy Buttons Changelog
 
+## 0.3.8
+
+New:
+
+* !fb\_image\_path allows users to specify an alternate image or image path than the default
+* IE6 conditional stylesheet included (removes png background image)
+
+## 0.3.7
+
+* Mundane fixes which I've forgotten.
+
 ## 0.3.6
 
 New:
