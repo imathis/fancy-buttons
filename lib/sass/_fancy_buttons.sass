@@ -11,6 +11,7 @@
 !fb_light_text ||= #fff
 !fb_dark_text ||= #222
 !fb_gradient ||= 1
+!fb_image_path ||= image_url("button_bg.png")
 
 // Make a fancy button.
 =fancy-button(!color= !fb_color, !font_size= !fb_font_size, !radius= !fb_radius, !border_width= !fb_border_width)
@@ -149,7 +150,7 @@
 // Reset the button's important properties to make sure they behave correctly
 =fb-reset(!font_weight = !fb_font_weight)
   font-family: "Lucida Grande", Lucida, Arial, sans_serif
-  background: #{image_url("button_bg.png")} repeat-x bottom left
+  background: #{!fb_bg_image} repeat-x bottom left
   margin: 0
   width: auto
   overflow: visible
