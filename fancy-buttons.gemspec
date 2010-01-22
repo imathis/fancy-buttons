@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fancy-buttons}
-  s.version = "0.3.7"
+  s.version = "0.3.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Mathis"]
-  s.date = %q{2009-12-15}
+  s.date = %q{2010-01-22}
   s.description = %q{Make fancy buttons with the Compass stylesheet authoring framework.}
   s.email = %q{brandon@imathis.com}
   s.extra_rdoc_files = [
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "lib/sass/_fancy_gradient.sass",
      "lib/templates/project/button_bg.png",
      "lib/templates/project/buttons.sass",
+     "lib/templates/project/ie6.sass",
      "lib/templates/project/index.html",
      "lib/templates/project/manifest.rb"
   ]
