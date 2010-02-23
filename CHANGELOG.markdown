@@ -1,5 +1,15 @@
 # Fancy Buttons Changelog
 
+## 0.4
+
+**Now Supporting the latest FireFox gradients**
+
+Note: You'll need Compass 0.10 (pending release) or 0.10.0.pre8 (if you're bleeding edge like me)
+
+## 0.3.9
+
+minor bug fixes
+
 ## 0.3.8
 
 New:
