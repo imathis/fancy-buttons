@@ -1,5 +1,11 @@
 # Fancy Buttons Changelog
 
+## 0.5
+
+Updated to use Sass3 syntax, this requires the latest pre-releases of both Haml and Compass which should be automatically installed for you.
+
+**Note: you may need to update your system with `sudo gem update --system` if you're not running ruby gems 1.3.6**
+
 ## 0.4
 
 **Now Supporting the latest FireFox gradients**
