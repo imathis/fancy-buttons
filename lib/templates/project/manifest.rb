@@ -9,4 +9,3 @@ if response.downcase == "y" || response.downcase == "\n"
   stylesheet 'buttons.sass', :media => 'screen, projection'
 end
 print 'Don\'t forget to @import "fancy-buttons"'
-print 'peace homies'
