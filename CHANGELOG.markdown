@@ -1,5 +1,9 @@
 # Fancy Buttons Changelog
 
+## 0.5.1
+
+Fixed an overzealous .gitignore rule where essential stylesheets were being excluded from the gem. Oh my!
+
 ## 0.5
 
 Updated to use Sass3 syntax, this requires the latest pre-releases of both Haml and Compass which should be automatically installed for you.
