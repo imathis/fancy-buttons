@@ -1,5 +1,14 @@
 # Fancy Buttons Changelog
 
+## 0.5.3
+
+- Deprecated @import fancy_button.sass in favor of syntax agnostic and dashed import @import "fancy-buttons"
+- Added :visited override to avoid incorrect colors in link buttons
+
+## 0.5.2
+
+Updated requirements to include latest stable versions of Haml and Compass
+
 ## 0.5.1
 
 Fixed an overzealous .gitignore rule where essential stylesheets were being excluded from the gem. Oh my!
