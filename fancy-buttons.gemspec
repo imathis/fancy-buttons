@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fancy-buttons}
-  s.version = "0.5.3"
+  s.version = "0.5.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Mathis"]
-  s.date = %q{2010-05-13}
+  s.date = %q{2010-05-23}
   s.description = %q{Easily style buttons with beautiful CSS3 features like gradients, rounded corners, etc. Don't worry the buttons also degrade nicely for browsers with no support. This requires the Compass stylesheet authoring framework.}
   s.email = %q{brandon@imathis.com}
   s.extra_rdoc_files = [
