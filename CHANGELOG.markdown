@@ -1,5 +1,9 @@
 # Fancy Buttons Changelog
 
+## 0.5.4
+
+Updated old linear-gradient syntax in the example
+
 ## 0.5.3
 
 - Deprecated @import fancy_button.sass in favor of syntax agnostic and dashed import @import "fancy-buttons"
