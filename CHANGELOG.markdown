@@ -1,5 +1,10 @@
 # Fancy Buttons Changelog
 
+## next
+
+- Removed template files
+- Added a link to the guide when fancy-buttons is installed.
+
 ## 0.5.4
 
 Updated old linear-gradient syntax in the example

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Mathis"]
-  s.date = %q{2010-05-23}
+  s.date = %q{2010-05-24}
   s.description = %q{Easily style buttons with beautiful CSS3 features like gradients, rounded corners, etc. Don't worry the buttons also degrade nicely for browsers with no support. This requires the Compass stylesheet authoring framework.}
   s.email = %q{brandon@imathis.com}
   s.extra_rdoc_files = [
@@ -24,9 +24,7 @@ Gem::Specification.new do |s|
      "lib/stylesheets/_fancy-gradient.sass",
      "lib/stylesheets/_fancy_buttons.sass",
      "lib/templates/project/button_bg.png",
-     "lib/templates/project/buttons.sass",
      "lib/templates/project/ie6.sass",
-     "lib/templates/project/index.html",
      "lib/templates/project/manifest.rb"
   ]
   s.homepage = %q{http://github.com/imathis/fancy-buttons}
