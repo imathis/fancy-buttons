@@ -12,6 +12,7 @@ $fb_light_text: white !default
 $fb_dark_text: #222222 !default
 $fb_gradient: 1 !default
 $fb_image_path: image_url("button_bg.png") !default
+$fb_allow_disabled: true !default
 
 // Make a fancy button.
 =fancy-button($color: $fb_color, $font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width)
@@ -19,10 +20,11 @@ $fb_image_path: image_url("button_bg.png") !default
   +fancy-button-colors($color)
 
 // Style the button's colors, picking the most appropriate color set for the base color.
-=fancy-button-colors($color: $fb_color, $hover: 0, $active: 0)
+=fancy-button-colors($color: $fb_color, $hover: 0, $active: 0, $allow_disabled: $fb_allow_disabled)
   +fb-color($color, "default")
-  &.disabled:active, &.disabled:hover, &[disabled]:active, &[disabled]:hover
-    +fb-color($color, "default")
+  @if $allow_disabled
+    &.disabled:active, &.disabled:hover, &[disabled]:active, &[disabled]:hover
+      +fb-color($color, "default")
   &:hover, &:focus
     @if $hover == 0
       +fb-color(darken($color, 3), "hover", $color)
@@ -100,14 +102,20 @@ $fb_image_path: image_url("button_bg.png") !default
     &, &:visited
       color: $fb_dark_text
 
-=fancy-button-text-colors($color, $hover, $active)
+=fancy-button-text-colors($color, $hover, $active, $allow-disabled : $fb-allow-disabled)
   color: $color
-  &:hover, &:focus
-    color: $hover
-  &:active
-    color: $active
-  &.disabled:active, &.disabled:hover, &[disabled]:active, &[disabled]:hover
-    color: $color
+  @if $hover != $color
+    &:hover, &:focus
+      color: $hover
+  @if $active != $color
+    &:active
+      color: $active
+  @if $allow-disabled and $active != $color
+    &.disabled:active, &[disabled]:active
+      color: $color
+  @if $allow-disabled and $hover != $color
+    &.disabled:hover, &[disabled]:hover
+      color: $color
 
 // Apply this mixin to a nested element to style an arrow
 =fancy-arrow($font_size)
@@ -116,11 +124,11 @@ $fb_image_path: image_url("button_bg.png") !default
   margin-left: 4px
 
 // Layout the button's box
-=fancy-button-structure($font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width, $line_height: $font_size * 1.2)
-  +fb-reset
-  +fancy-button-size($font_size, $radius, $border_width, $line_height)
+=fancy-button-structure($font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width, $line_height: $font_size * 1.2, $allow_disabled: $fb_allow_disabled)
+  +fb-reset($fb_font_weight, $allow_disabled)
+  +fancy-button-size($font_size, $radius, $border_width, $line_height, $allow_disabled)
 
-=fancy-button-size($font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width, $line_height: $font_size * 1.2)
+=fancy-button-size($font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width, $line_height: $font_size * 1.2, $allow_disabled: $fb_allow_disabled)
   // better padding for smaller buttons
   $v_padding: 0
   $h_padding: 0
@@ -134,9 +142,9 @@ $fb_image_path: image_url("button_bg.png") !default
     +border-radius($radius)
   font-size: $font_size
   line-height: $line_height
-  +fancy-button-padding($v_padding, $h_padding, $border_width)
+  +fancy-button-padding($v_padding, $h_padding, $border_width, $allow_disabled)
 
-=fancy-button-padding($v_padding, $h_padding, $border_width: $fb_border_width)
+=fancy-button-padding($v_padding, $h_padding, $border_width: $fb_border_width, $allow_disabled: $fb_allow_disabled)
   $v_padding_active: $v_padding - 1px
   $h_padding_active: $h_padding - 1px
   padding: $v_padding $h_padding
@@ -144,12 +152,13 @@ $fb_image_path: image_url("button_bg.png") !default
   &:active
     padding: $v_padding_active $h_padding_active
     border-width: $border_width + 1px
-  &.disabled:active, &[disabled]
-    padding: $v_padding $h_padding
-    border-width: $border_width
+  @if $allow_disabled
+    &.disabled:active, &[disabled]
+      padding: $v_padding $h_padding
+      border-width: $border_width
 
 // Reset the button's important properties to make sure they behave correctly
-=fb-reset($font_weight: $fb_font_weight)
+=fb-reset($font_weight: $fb_font_weight, $allow_disabled: $fb_allow_disabled)
   font-family: "Lucida Grande", Lucida, Arial, sans_serif
   background: #{$fb_image_path} repeat-x bottom left
   margin: 0
@@ -165,8 +174,9 @@ $fb_image_path: image_url("button_bg.png") !default
     padding: 0
   &:focus
     outline: none
-  &.disabled, &[disabled]
-    +disable-button
+  @if $fb_allow_disabled
+    &.disabled, &[disabled]
+      +disable-button
 
 =disable-button($opacity: 0.7)
   +opacity($opacity)
