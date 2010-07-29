@@ -2,7 +2,7 @@
 stylesheet 'ie6.sass', :media => 'screen, projection', :condition => "lt IE 7"
 image 'button_bg.png'
 
-print "Check out http://brandonmathis.com/projects/fancy-buttons/guide/ to get a guide on how to use fancy-buttons"
+#print "Check out http://brandonmathis.com/projects/fancy-buttons/guide/ to get a guide on how to use fancy-buttons"
 
 #print "Install example files? (html and buttons.sass) (Y/n)?" 
 #response = gets

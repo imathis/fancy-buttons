@@ -1,9 +1,11 @@
 # Fancy Buttons Changelog
 
-## next
+## 0.5.5
 
 - Removed template files
-- Added a link to the guide when fancy-buttons is installed.
+- Added <code>$fb-allow-disabled</code> variable - defaults to true (credit: Chris Eppstein)
+  Now you can toggle the output of styling for disabled buttons or links with the class "button disabled".
+  This is useful if you want to reduce the size of your css and won't be using the disabled feature.
 
 ## 0.5.4
 
