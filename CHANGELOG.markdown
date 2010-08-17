@@ -1,9 +1,23 @@
 # Fancy Buttons Changelog
 
+## 0.6.0 PRE
+
+- **Changes that affect your current style**
+  - The mixin fancy-arrow was removed, I don't think anyone ever used this.
+  - Removed doubled border on :active state (caused lots of CSS bloat for minimal visual effect).
+  - Disabled styling is now off by default. `$fb-allow-disabled: false !default`. If you're using disabled styling, set this to true and you won't notice any changes. If not, your CSS output may be shrink quite a bit!
+- **Improvements/Fixes**
+  - Disabled styles are much leaner
+  - Button reset uses `@extend` to make sure all fancy buttons get styles reset in one location
+  - Fixed a bug in `fancy-button-text-colors` (it works now)
+  - New variable: `$fb-line-height: 1.2em !default` allows you to set a default button line-height.
+  - New Mixin: `disable-fancy-button` allows you to set the color and opacity for disabled button states. This is best used with a 'disabled' class name, or disabled attribute selector.
+  - Source is now dasherized (won't affect your usage, just makes it nicer for me)
+
 ## 0.5.5
 
 - Removed template files
-- Added <code>$fb-allow-disabled</code> variable - defaults to true (credit: Chris Eppstein)
+- Added `$fb-allow-disabled` variable - defaults to true (credit: Chris Eppstein)
   Now you can toggle the output of styling for disabled buttons or links with the class "button disabled".
   This is useful if you want to reduce the size of your css and won't be using the disabled feature.
 

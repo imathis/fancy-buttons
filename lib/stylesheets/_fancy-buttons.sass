@@ -1,30 +1,28 @@
 @import compass/css3
 @import fancy-gradient
 
-$fb_gradient_style: glossy !default
-$fb_invert_on_click: 1 !default
-$fb_font_size: 18px !default
-$fb_color: #444444 !default
-$fb_font_weight: bold !default
-$fb_border_width: 1px !default
-$fb_radius: 6px !default
-$fb_light_text: white !default
-$fb_dark_text: #222222 !default
-$fb_gradient: 1 !default
-$fb_image_path: image_url("button_bg.png") !default
-$fb_allow_disabled: true !default
+$fb-gradient-style: glossy !default
+$fb-invert-on-click: 1 !default
+$fb-font-size: 18px !default
+$fb-color: #444444 !default
+$fb-font-weight: bold !default
+$fb-border-width: 1px !default
+$fb-radius: 6px !default
+$fb-light-text: white !default
+$fb-dark-text: #222222 !default
+$fb-gradient: 1 !default
+$fb-image-path: image-url("button_bg.png") !default
+$fb-allow-disabled: false !default
+$fb-line-height: 1.2em !default
 
 // Make a fancy button.
-=fancy-button($color: $fb_color, $font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width)
-  +fancy-button-structure($font_size, $radius, $border_width)
+=fancy-button($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
+  +fancy-button-structure($font-size, $radius, $border-width)
   +fancy-button-colors($color)
 
 // Style the button's colors, picking the most appropriate color set for the base color.
-=fancy-button-colors($color: $fb_color, $hover: 0, $active: 0, $allow_disabled: $fb_allow_disabled)
+=fancy-button-colors($color: $fb-color, $hover: 0, $active: 0, $allow-disabled: $fb-allow-disabled)
   +fb-color($color, "default")
-  @if $allow_disabled
-    &.disabled:active, &.disabled:hover, &[disabled]:active, &[disabled]:hover
-      +fb-color($color, "default")
   &:hover, &:focus
     @if $hover == 0
       +fb-color(darken($color, 3), "hover", $color)
@@ -35,132 +33,119 @@ $fb_allow_disabled: true !default
       +fb-color(darken($color, 6), "active", $color)
     @else
       +fb-color($active, "active")
+  @if $allow-disabled
+    &.disabled, &[disabled]
+      +disable-fancy-button($color)
 
-=fancy-button-matte($color: $fb_color, $font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width)
-  +fancy-button-structure($font_size, $radius, $border_width)
+=fancy-button-allow-disable($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
+  $fb-disable-allowed: $fb-allow-disable
+  $fb-allow-disable: true
+  +fancy-button-structure($font-size, $radius, $border-width)
+  +fancy-button-colors-matte($color)
+  $fb-allow-disable: $fb-disable-allowed
+
+=fancy-button-matte($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
+  +fancy-button-structure($font-size, $radius, $border-width)
   +fancy-button-colors-matte($color)
 
-=fancy-button-custom($color: $fb_color, $font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width)
-  +fancy-button-structure($font_size, $radius, $border_width)
-  +fancy-button-colors-custom($color, $font_size, $radius, $border_width)
+=fancy-button-custom($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
+  +fancy-button-structure($font-size, $radius, $border-width)
+  +fancy-button-colors-custom($color, $font-size, $radius, $border-width)
 
-=fancy-button-colors-matte($color: $fb_color, $hover: 0, $active: 0)
-  $fb_current_style: $fb_gradient_style
-  $fb_gradient_style: matte
+=fancy-button-colors-matte($color: $fb-color, $hover: 0, $active: 0)
+  $fb-current-style: $fb-gradient-style
+  $fb-gradient-style: matte
   +fancy-button-colors($color, $hover, $active)
-  $fb_gradient_style: $fb_current_style
+  $fb-gradient-style: $fb-current-style
 
-=fancy-button-colors-custom($color: $fb_color, $hover: 0, $active: 0)
-  $fb_current_style: $fb_gradient_style
-  $fb_gradient_style: custom
+=fancy-button-colors-custom($color: $fb-color, $hover: 0, $active: 0)
+  $fb-current-style: $fb-gradient-style
+  $fb-gradient-style: custom
   +fancy-button-colors($color, $hover, $active)
-  $fb_gradient_style: $fb_current_style
+  $fb-gradient-style: $fb-current-style
 
 // Default state color settings
 =fb-color($color, $state, $lumins: $color)
-  $gradient_top: lighten($color, 15)
-  $gradient_bottom: darken($color, 6)
-  $border_color: darken($color, 8)
-  @if $fb_invert_on_click != 0
-    $border_color: darken($color, 15)
+  $gradient-top: lighten($color, 15)
+  $gradient-bottom: darken($color, 6)
+  $border-color: darken($color, 8)
+  @if $fb-invert-on-click != 0
+    $border-color: darken($color, 15)
   @if saturation($color) > 0
     $color: saturate($color, 40)
   @else if lightness($lumins) >= lightness(#aaaaaa)
     $color: lighten($color, 20)
-  +fb-state-colors($color, $gradient_top, $gradient_bottom, $border_color, $state, $lumins)
+  +fb-state-colors($color, $gradient-top, $gradient-bottom, $border-color, $state, $lumins)
 
 // Apply the button colors specified for the button state into which it is mixed.
-=fb-state-colors($color, $gradient_top, $gradient_bottom, $border, $state, $lumins: $color)
+=fb-state-colors($color, $gradient-top, $gradient-bottom, $border, $state, $lumins: $color)
   background-color: $color
-  @if $fb_gradient != 0
-    @if $fb_gradient_style == "glossy"
-      @if $fb_invert_on_click != 0 and $state == "active"
-        +invert-fancy-gradient($gradient_top, $gradient_bottom)
+  @if $fb-gradient != 0
+    @if $fb-gradient-style == "glossy"
+      @if $fb-invert-on-click != 0 and $state == "active"
+        +invert-fancy-gradient($gradient-top, $gradient-bottom)
       @else
-        +fancy-gradient($gradient_top, $gradient_bottom)
-    @else if $fb_gradient_style == "matte"
-      @if $fb_invert_on_click and $state == "active"
-        +invert-fancy-matte-gradient($gradient_top, $gradient_bottom)
+        +fancy-gradient($gradient-top, $gradient-bottom)
+    @else if $fb-gradient-style == "matte"
+      @if $fb-invert-on-click and $state == "active"
+        +invert-fancy-matte-gradient($gradient-top, $gradient-bottom)
       @else
-        +fancy-matte-gradient($gradient_top, $gradient_bottom)
-    @else if $fb_gradient_style == "custom"
-      @if $fb_invert_on_click and $state == "active"
-        +invert-custom-fancy-gradient($gradient_top, $gradient_bottom)
+        +fancy-matte-gradient($gradient-top, $gradient-bottom)
+    @else if $fb-gradient-style == "custom"
+      @if $fb-invert-on-click and $state == "active"
+        +invert-custom-fancy-gradient($gradient-top, $gradient-bottom)
       @else
-        +custom-fancy-gradient($gradient_top, $gradient_bottom)
+        +custom-fancy-gradient($gradient-top, $gradient-bottom)
   border:
     color: $border
-  $text_shadow_settings: unquote("0px 1px 1px")
-  @if $fb_invert_on_click != 0 and $state == "active"
-    $text_shadow_settings: unquote("0px -1px -1px")
+  $text-shadow-settings: unquote("0px 1px 1px")
+  @if $fb-invert-on-click != 0 and $state == "active"
+    $text-shadow-settings: unquote("0px -1px -1px")
   @if lightness($lumins) < lightness(#aaaaaa)
-    text-shadow: darken($color, 25) $text_shadow_settings
+    text-shadow: darken($color, 25) $text-shadow-settings
     &, &:visited
-      color: $fb_light_text
+      color: $fb-light-text
   @else
-    text-shadow: lighten($color, 15) $text_shadow_settings
+    text-shadow: lighten($color, 15) $text-shadow-settings
     &, &:visited
-      color: $fb_dark_text
+      color: $fb-dark-text
 
 =fancy-button-text-colors($color, $hover, $active, $allow-disabled : $fb-allow-disabled)
-  color: $color
+  &, &:visited
+    color: $color
   @if $hover != $color
     &:hover, &:focus
       color: $hover
   @if $active != $color
     &:active
       color: $active
-  @if $allow-disabled and $active != $color
-    &.disabled:active, &[disabled]:active
+  @if $allow-disabled
+    &.disabled, &[disabled]
       color: $color
-  @if $allow-disabled and $hover != $color
-    &.disabled:hover, &[disabled]:hover
-      color: $color
-
-// Apply this mixin to a nested element to style an arrow
-=fancy-arrow($font_size)
-  font-size: $font_size + 4px
-  line-height: $font_size - 4px
-  margin-left: 4px
 
 // Layout the button's box
-=fancy-button-structure($font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width, $line_height: $font_size * 1.2, $allow_disabled: $fb_allow_disabled)
-  +fb-reset($fb_font_weight, $allow_disabled)
-  +fancy-button-size($font_size, $radius, $border_width, $line_height, $allow_disabled)
+=fancy-button-structure($font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width, $line-height: $fb-line-height)
+  @extend .fancy-button-reset-base-class
+  +fancy-button-size($font-size, $radius, $border-width, $line-height)
 
-=fancy-button-size($font_size: $fb_font_size, $radius: $fb_radius, $border_width: $fb_border_width, $line_height: $font_size * 1.2, $allow_disabled: $fb_allow_disabled)
+=fancy-button-size($font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width, $line-height: $fb-line-height)
   // better padding for smaller buttons
-  $v_padding: 0
-  $h_padding: 0
-  @if $font_size > 15
-    $v_padding: floor($font_size / 3.5)
-    $h_padding: $font_size
-  @else
-    $v_padding: floor($font_size / 5)
-    $h_padding: floor($font_size / 1.2)
+  $v-padding: 0.3em
+  $h-padding: 1em
   @if $radius > 0
     +border-radius($radius)
-  font-size: $font_size
-  line-height: $line_height
-  +fancy-button-padding($v_padding, $h_padding, $border_width, $allow_disabled)
+  font-size: $font-size
+  line-height: $line-height
+  +fancy-button-padding($v-padding, $h-padding, $border-width)
 
-=fancy-button-padding($v_padding, $h_padding, $border_width: $fb_border_width, $allow_disabled: $fb_allow_disabled)
-  $v_padding_active: $v_padding - 1px
-  $h_padding_active: $h_padding - 1px
-  padding: $v_padding $h_padding
-  border-width: $border_width
-  &:active
-    padding: $v_padding_active $h_padding_active
-    border-width: $border_width + 1px
-  @if $allow_disabled
-    &.disabled:active, &[disabled]
-      padding: $v_padding $h_padding
-      border-width: $border_width
+=fancy-button-padding($v-padding, $h-padding, $border-width: $fb-border-width)
+  padding: $v-padding $h-padding
+  border-width: $border-width
 
 // Reset the button's important properties to make sure they behave correctly
-=fb-reset($font_weight: $fb_font_weight, $allow_disabled: $fb_allow_disabled)
-  font-family: "Lucida Grande", Lucida, Arial, sans_serif
-  background: #{$fb_image_path} repeat-x bottom left
+=fb-reset($font-weight: $fb-font-weight, $allow-disabled: $fb-allow-disabled)
+  font-family: "Lucida Grande", Lucida, Arial, sans-serif
+  background: #{$fb-image-path} repeat-x bottom left
   margin: 0
   width: auto
   overflow: visible
@@ -168,17 +153,17 @@ $fb_allow_disabled: true !default
   cursor: pointer
   text-decoration: none
   border-style: solid
-  font-weight: $font_weight
+  font-weight: $font-weight
   &::-moz-focus-inner
     border: none
     padding: 0
   &:focus
     outline: none
-  @if $fb_allow_disabled
-    &.disabled, &[disabled]
-      +disable-button
 
-=disable-button($opacity: 0.7)
+=disable-fancy-button($color: $fb-color, $opacity: 0.7)
+  +fb-color($color, "default")
   +opacity($opacity)
-  &:hover, &:focus
-    cursor: default
+  cursor: default !important
+
+.fancy-button-reset-base-class
+  +fb-reset
