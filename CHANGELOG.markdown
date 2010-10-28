@@ -1,6 +1,6 @@
 # Fancy Buttons Changelog
 
-## 0.6.0 PRE
+## 1.0
 
 - **Changes that affect your current style**
   - The mixin fancy-arrow was removed, I don't think anyone ever used this.
@@ -13,6 +13,8 @@
   - New variable: `$fb-line-height: 1.2em !default` allows you to set a default button line-height.
   - New Mixin: `disable-fancy-button` allows you to set the color and opacity for disabled button states. This is best used with a 'disabled' class name, or disabled attribute selector.
   - Source is now dasherized (won't affect your usage, just makes it nicer for me)
+  - Imports to Compass library now only use the minimum necessary css3 modules
+  - Added support for RVM gem sets and bundler to aid development of fancy-buttons (doesn't affect users)
 
 ## 0.5.5
 

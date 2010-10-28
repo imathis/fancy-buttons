@@ -2,3 +2,4 @@ src/.sass-cache/
 example/stylesheets/
 example/src/.sass-cache
 *.gem
+.bundle
