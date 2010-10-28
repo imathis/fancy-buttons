@@ -113,15 +113,13 @@ $fb-line-height: 1.2em !default
     &, &:visited
       color: $fb-dark-text
 
-=fancy-button-text-colors($color, $hover, $active, $allow-disabled : $fb-allow-disabled)
+=fancy-button-text-colors($color, $hover: $color, $active: $color, $allow-disabled : $fb-allow-disabled)
   &, &:visited
     color: $color
-  @if $hover != $color
-    &:hover, &:focus
-      color: $hover
-  @if $active != $color
-    &:active
-      color: $active
+  &:hover, &:focus
+    color: $hover
+  &:active
+    color: $active
   @if $allow-disabled
     &.disabled, &[disabled]
       color: $color
