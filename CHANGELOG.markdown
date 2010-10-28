@@ -1,5 +1,9 @@
 # Fancy Buttons Changelog
 
+## 1.1
+
+- Fixed a bug in `fancy-button-text-colors` (it works now)
+
 ## 1.0
 
 - **Changes that affect your current style**
@@ -9,7 +13,6 @@
 - **Improvements/Fixes**
   - Disabled styles are much leaner
   - Button reset uses `@extend` to make sure all fancy buttons get styles reset in one location
-  - Fixed a bug in `fancy-button-text-colors` (it works now)
   - New variable: `$fb-line-height: 1.2em !default` allows you to set a default button line-height.
   - New Mixin: `disable-fancy-button` allows you to set the color and opacity for disabled button states. This is best used with a 'disabled' class name, or disabled attribute selector.
   - Source is now dasherized (won't affect your usage, just makes it nicer for me)
