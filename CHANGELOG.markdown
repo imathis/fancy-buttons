@@ -1,6 +1,11 @@
 # Fancy Buttons Changelog
 
-## 1.1
+## 1.0.2
+
+- Added inset box shadow for improved button beauty! (if you don't like it, you can set $fb-inset: false)
+- Added background-clip to help with bleeding backgrounds under rounded corners in webkit
+
+## 1.0.1
 
 - Fixed a bug in `fancy-button-text-colors` (it works now)
 
