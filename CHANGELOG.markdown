@@ -1,5 +1,9 @@
 # Fancy Buttons Changelog
 
+## 1.0.3
+
+- Improved inset box shadow for a nice depressed look on :active states.
+
 ## 1.0.2
 
 - Added inset box shadow for improved button beauty! (if you don't like it, you can set $fb-inset: false)

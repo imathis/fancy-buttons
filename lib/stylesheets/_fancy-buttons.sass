@@ -39,11 +39,13 @@ $fb-inset: true !default
       +fb-color(darken($color, 6), "active", $color)
     @else
       +fb-color($active, "active")
+    @if $fb-inset
+      +box-shadow(darken($color, 15), 0, .08em, .1em, 1px, inset)
   @if $allow-disabled
     &.disabled, &[disabled]
       +disable-fancy-button($color)
   @if $fb-inset
-    +box-shadow(rgba(255,255,255, (lightness($color) - 5)/100), 0, 0, .1em, 1px, inset)
+    +box-shadow(rgba(255,255,255, (lightness($color))/100), 0, 0, .1em, 1px, inset)
   +background-clip(padding-box)
 
 =fancy-button-allow-disable($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
