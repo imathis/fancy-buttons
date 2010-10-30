@@ -1,12 +1,19 @@
 # Fancy Buttons Changelog
 
+## 1.0.4
+
+- Changed: The naming pattern for gradient mixins which style the :active state has changed from *invert*-fancy-gradient to fancy-gradient-*active*.
+- Fixed: If button has a different color for the :active state, the inset shadow is based on that color.
+- Removed: $fb-inset option. Buttons look better with it always true.
+- Removed: $fb-invert-on-click option. There is no reason not to invert the button.
+
 ## 1.0.3
 
 - Improved inset box shadow for a nice depressed look on :active states.
 
 ## 1.0.2
 
-- Added inset box shadow for improved button beauty! (if you don't like it, you can set $fb-inset: false)
+- Added inset box shadow for improved button beauty! <s>(if you don't like it, you can set $fb-inset: false)</s>
 - Added background-clip to help with bleeding backgrounds under rounded corners in webkit
 
 ## 1.0.1

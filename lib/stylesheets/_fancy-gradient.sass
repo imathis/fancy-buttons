@@ -6,7 +6,7 @@
   $bottom_middle: $color2
   +linear-gradient(color_stops($top_shine, $top_middle 10%, $middle 50%, $bottom_middle 50%, $bottom_glow))
 
-=invert-fancy-gradient($color1, $color2)
+=fancy-gradient-active($color1, $color2)
   $top: lighten($color2, 6)
   $bottom: lighten($color2, 14)
   $top_middle: lighten($color2, 8)
@@ -17,12 +17,12 @@
 =fancy-matte-gradient($color1, $color2)
   +linear-gradient(color_stops($color1, $color2))
 
-=invert-fancy-matte-gradient($color1, $color2)
+=fancy-matte-gradient-active($color1, $color2)
   $top: lighten($color2, 5)
   $bottom: lighten($color2, 15)
   $middle: lighten($color2, 8)
   +linear-gradient(color_stops($top, $middle 40%, $middle 85%, $bottom))
 
 /* incase an inverted custom gradient isn't specified
-=invert-custom-fancy-gradient($color1, $color2)
+=custom-fancy-gradient-active($color1, $color2)
   +custom-fancy-gradient($color1, $color2)
