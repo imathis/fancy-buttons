@@ -1,0 +1,26 @@
+@import "compass";
+@include global-reset;
+@include reset-html5;
+
+html { @include linear-gradient(color-stops(#145599, darken(#145599, 19))); height: 100%; background-color: #0e3b69;}
+body { background: none; text-align: center; padding-top: 10px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #fff; }
+
+#{headings()} { letter-spacing: -1px; margin: .4em 0 .8em; font-weight: bold; @include text-shadow(rgba(#000,.3), 1px, 1px, 4px)}
+
+h1 { font-size: 50px; }
+h2 { font-size: 30px; }
+
+div { background: #fff; width: 310px; margin: 0 auto;
+  border: 10px solid darken(#fff, 20);
+  @include box-shadow(rgba(#000, .4), 0, 0, 1px, 1px, inset);
+  @include border-radius(10px);
+  @include background-clip(padding-box);
+  padding: 40px 0;
+  }
+div.dark { background: #151515; width: 310px; margin: 0 auto;
+  border: 10px solid rgba(#000,1);
+  @include box-shadow(rgba(#fff, .1), 0, 0, 1px, 1px, inset);
+  @include border-radius(10px);
+  @include background-clip(padding-box);
+  padding: 40px 0;
+  }

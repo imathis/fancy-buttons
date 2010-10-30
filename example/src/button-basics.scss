@@ -1,0 +1,4 @@
+@import "page-styles";
+@import "fancy-buttons";
+
+button {@include fancy-button(#124c89, 26px, 1em, 4px);}
