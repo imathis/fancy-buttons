@@ -49,11 +49,11 @@ $fb-inset: true !default
   +background-clip(padding-box)
 
 =fancy-button-allow-disable($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
-  $fb-disable-allowed: $fb-allow-disable
-  $fb-allow-disable: true
+  $fb-disable-allowed: $fb-allow-disabled
+  $fb-allow-disabled: true
   +fancy-button-structure($font-size, $radius, $border-width)
   +fancy-button-colors-matte($color)
-  $fb-allow-disable: $fb-disable-allowed
+  $fb-allow-disabled: $fb-disable-allowed
 
 =fancy-button-matte($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
   +fancy-button-structure($font-size, $radius, $border-width)
