@@ -173,6 +173,8 @@ $fb-inset: true !default
   +fb-color($color, "default")
   +opacity($opacity)
   cursor: default !important
+  @if $fb-inset
+    +box-shadow(rgba(255,255,255, (lightness($color))/100), 0, 0, .1em, 1px, inset)
 
 .fancy-button-reset-base-class
   +fb-reset
