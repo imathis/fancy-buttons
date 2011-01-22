@@ -1,5 +1,5 @@
 src/.sass-cache/
 example/stylesheets/
-example/src/.sass-cache
+example/sass/.sass-cache
 *.gem
 .bundle

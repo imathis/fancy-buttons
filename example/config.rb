@@ -3,6 +3,6 @@ require '../lib/fancy-buttons'
 
 project_type = :stand_alone
 css_dir = "stylesheets"
-sass_dir = "src"
+sass_dir = "sass"
 images_dir = "images"
 relative_assets = true

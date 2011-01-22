@@ -1,5 +1,6 @@
---- 
-:patch: 5
-:build: 
+---
 :major: 1
 :minor: 0
+:patch: 5
+:state:
+:build:

@@ -1,0 +1,7 @@
+@import "page-styles";
+@import "fancy-buttons";
+
+button {
+  @include fancy-button-structure(26px, 1em, 4px);
+  @include fancy-button-colors(#124c89, adjust-hue(#124c89, -120), darken(adjust-hue(#124c89, -120), 6));
+  }
