@@ -1,6 +1,6 @@
 ---
 :major: 1
 :minor: 0
-:patch: 5
-:state:
-:build:
+:patch: 6
+:state: 'alpha'
+:build: 1

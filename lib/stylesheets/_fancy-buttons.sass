@@ -36,16 +36,17 @@ $fb-line-height: 1.2em !default
   &:active
     @if $active == 0
       +fb-color(darken($color, 6), "active", $color)
-      +box-shadow(darken($color, 15), 0, .08em, .1em, 1px, inset)
+      +box-shadow(darken($color, 15) 0 .08em .1em 1px inset)
     @else
       +fb-color($active, "active")
-      +box-shadow(darken($active, 9), 0, .08em, .1em, 1px, inset)
-    
+      +box-shadow(darken($active, 9) 0 .08em .1em 1px inset)
+
+  +box-shadow(rgba(#fff, (lightness($color))/100) 0 0 .1em 1px inset)
+  +background-clip(padding-box)
   @if $allow-disabled
     &.disabled, &[disabled]
       +disable-fancy-button($color)
-  +box-shadow(rgba(255,255,255, (lightness($color))/100), 0, 0, .1em, 1px, inset)
-  +background-clip(padding-box)
+      +box-shadow(none)
 
 =fancy-button-allow-disable($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
   $fb-disable-allowed: $fb-allow-disabled

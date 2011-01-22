@@ -1,3 +1,4 @@
+$fb-allow-disabled: true
 @import fancy-buttons
 
 body
@@ -21,7 +22,7 @@ $heart_button: saturate(lighten($red, 2), 20)
 
 
 =custom-fancy-gradient($color1, $color2)
-  +radial-gradient(color_stops($color1, darken($color2, 5) 30px), "50% 10%")
+  +background-image(radial-gradient(50% 10%, $color1, darken($color2, 5) 30px))
 =custom-fancy-gradient-active($color1, $color2)
   +custom-fancy-gradient(lighten($color2, 10), lighten($color2, 25))
 
@@ -29,7 +30,7 @@ $heart_button: saturate(lighten($red, 2), 20)
   +fancy-button
   margin: 0 2px
   vertical-align: middle
-  
+
 .button, button
   @extend .fancy-button-base
   &[disabled]

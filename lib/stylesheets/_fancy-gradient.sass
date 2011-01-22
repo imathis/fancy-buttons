@@ -4,7 +4,7 @@
   $top_middle: $color1
   $middle: lighten($color2, 3)
   $bottom_middle: $color2
-  +linear-gradient(color_stops($top_shine, $top_middle 10%, $middle 50%, $bottom_middle 50%, $bottom_glow))
+  +background-image(linear-gradient($top_shine, $top_middle 10%, $middle 50%, $bottom_middle 50%, $bottom_glow))
 
 =fancy-gradient-active($color1, $color2)
   $top: lighten($color2, 6)
@@ -12,16 +12,16 @@
   $top_middle: lighten($color2, 8)
   $middle: lighten($color2, 4)
   $bottom_middle: lighten($color2, 1)
-  +linear-gradient(color_stops($top, $top_middle 30%, $middle 50%, $bottom_middle 50%, $bottom))
+  +background-image(linear-gradient($top, $top_middle 30%, $middle 50%, $bottom_middle 50%, $bottom))
 
 =fancy-matte-gradient($color1, $color2)
-  +linear-gradient(color_stops($color1, $color2))
+  +background-image(linear-gradient($color1, $color2))
 
 =fancy-matte-gradient-active($color1, $color2)
   $top: lighten($color2, 5)
   $bottom: lighten($color2, 15)
   $middle: lighten($color2, 8)
-  +linear-gradient(color_stops($top, $middle 40%, $middle 85%, $bottom))
+  +background-image(linear-gradient($top, $middle 40%, $middle 85%, $bottom))
 
 /* incase an inverted custom gradient isn't specified
 =custom-fancy-gradient-active($color1, $color2)
