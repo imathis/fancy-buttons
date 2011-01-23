@@ -4,9 +4,13 @@
 - Now requires Compass 0.11 beta or higher
 - Compass CSS3 mixin usage was updated to work with the improved syntax in 0.11
 
-## 1.0.5
+## 1.0.6
 - Now removes inset box shadow styling from disabled buttons
 - Fixed: typo in variable $fb-allow-disabled (was sometimes $fb-allow-disable)
+
+## 1.0.5
+
+- Failed at being as cool as 1.0.6. Yanked as punishment.
 
 ## 1.0.4
 
