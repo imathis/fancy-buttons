@@ -1,6 +1,6 @@
 # Fancy Buttons Changelog
 
-## 1.0.6.alpha.1
+## 1.1.0.alpha.1
 - Now requires Compass 0.11 beta or higher
 - Compass CSS3 mixin usage was updated to work with the improved syntax in 0.11
 

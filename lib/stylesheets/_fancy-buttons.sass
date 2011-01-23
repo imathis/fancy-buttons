@@ -26,7 +26,7 @@ $fb-line-height: 1.2em !default
   +fancy-button-colors($color)
 
 // Style the button's colors, picking the most appropriate color set for the base color.
-=fancy-button-colors($color: $fb-color, $hover: 0, $active: 0, $allow-disabled: $fb-allow-disabled)
+=fancy-button-colors($color: $fb-color, $hover: 0, $active: 0, $fb-allow-disabled: $fb-allow-disabled)
   +fb-color($color, "default")
   &:hover, &:focus
     @if $hover == 0
@@ -36,17 +36,16 @@ $fb-line-height: 1.2em !default
   &:active
     @if $active == 0
       +fb-color(darken($color, 6), "active", $color)
-      +box-shadow(darken($color, 15) 0 .08em .1em 1px inset)
+      +box-shadow(darken($color, 15) 0 .08em .2em 1px inset)
     @else
       +fb-color($active, "active")
       +box-shadow(darken($active, 9) 0 .08em .1em 1px inset)
 
   +box-shadow(rgba(#fff, (lightness($color))/100) 0 0 .1em 1px inset)
   +background-clip(padding-box)
-  @if $allow-disabled
+  @if $fb-allow-disabled
     &.disabled, &[disabled]
       +disable-fancy-button($color)
-      +box-shadow(none)
 
 =fancy-button-allow-disable($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
   $fb-disable-allowed: $fb-allow-disabled
@@ -121,14 +120,14 @@ $fb-line-height: 1.2em !default
     &, &:visited
       color: $fb-dark-text
 
-=fancy-button-text-colors($color, $hover: $color, $active: $color, $allow-disabled : $fb-allow-disabled)
+=fancy-button-text-colors($color, $hover: $color, $active: $color, $fb-allow-disabled : $fb-allow-disabled)
   &, &:visited
     color: $color
   &:hover, &:focus
     color: $hover
   &:active
     color: $active
-  @if $allow-disabled
+  @if $fb-allow-disabled
     &.disabled, &[disabled]
       color: $color
 
@@ -152,7 +151,7 @@ $fb-line-height: 1.2em !default
   border-width: $border-width
 
 // Reset the button's important properties to make sure they behave correctly
-=fb-reset($font-weight: $fb-font-weight, $allow-disabled: $fb-allow-disabled)
+=fb-reset($font-weight: $fb-font-weight)
   font-family: "Lucida Grande", Lucida, Arial, sans-serif
   background: #{$fb-image-path} repeat-x bottom left
   margin: 0
@@ -172,6 +171,7 @@ $fb-line-height: 1.2em !default
 =disable-fancy-button($color: $fb-color, $opacity: 0.7)
   +fb-color($color, "default")
   +opacity($opacity)
+  +box-shadow(none)
   cursor: default !important
 
 .fancy-button-reset-base-class

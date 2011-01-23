@@ -1,4 +1,4 @@
-$fb-allow-disabled: true
+//$fb-allow-disabled: true
 @import fancy-buttons
 
 body
@@ -34,7 +34,7 @@ $heart_button: saturate(lighten($red, 2), 20)
 .button, button
   @extend .fancy-button-base
   &[disabled]
-    +disable-fancy-button
+    +disable-fancy-button(gray)
 .light
   +fancy-button-colors-matte(#ddd)
 .matte-blue
