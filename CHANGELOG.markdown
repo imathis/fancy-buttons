@@ -1,10 +1,18 @@
 # Fancy Buttons Changelog
 
+## 1.0.6.alpha.1
+- Now requires Compass 0.11 beta or higher
+- Compass CSS3 mixin usage was updated to work with the improved syntax in 0.11
+
+## 1.0.5
+- Now removes inset box shadow styling from disabled buttons
+- Fixed: typo in variable $fb-allow-disabled (was sometimes $fb-allow-disable)
+
 ## 1.0.4
 
-- Changed: The naming pattern for gradient mixins which style the :active state has changed from *invert*-fancy-gradient to fancy-gradient-*active*.
+- The naming pattern for gradient mixins which style the :active state has changed from *invert*-fancy-gradient to fancy-gradient-*active*.
 - Fixed: If button has a different color for the :active state, the inset shadow is based on that color.
-- Removed: $fb-inset option. Buttons look better with it always true.
+- Removed: $fb-inset option. Buttons look better with it always true. The code to keep this option is just ugly.
 - Removed: $fb-invert-on-click option. There is no reason not to invert the button.
 
 ## 1.0.3
@@ -112,7 +120,7 @@ Fixes:
 
 * Fixed Text color flicker when using functions with borderline luminosity
 
-Changes: 
+Changes:
 
 * **Important:** * You must use `sudo gem install compass --pre` since rubygems doesn't install prerelease gem versions automatically.
 * **Important:** Global defaults have changed from the prefix "!default\_button\_" to the prefix "!fb_". If you were using global project defaults
