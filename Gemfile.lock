@@ -1,22 +1,14 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    compass (0.10.6)
-      haml (>= 3.0.4)
-    gemcutter (0.6.1)
-    git (1.2.5)
-    haml (3.0.22)
-    jeweler (1.4.0)
-      gemcutter (>= 0.1.0)
-      git (>= 1.2.5)
-      rubyforge (>= 2.0.0)
-    json_pure (1.4.6)
-    rubyforge (2.0.4)
-      json_pure (>= 1.1.7)
+    chunky_png (0.12.0)
+    compass (0.11.beta.2)
+      chunky_png (~> 0.12.0)
+      sass (>= 3.1.0.alpha.218)
+    sass (3.1.0.alpha.221)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  compass
-  jeweler
+  compass (= 0.11.beta.2)

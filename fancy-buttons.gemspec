@@ -14,7 +14,7 @@ Gem::Specification.new do |gemspec|
   gemspec.rubygems_version = "1.4.2"
   gemspec.summary = "Make fancy CSS3 buttons with the Compass stylesheet authoring framework."
 
-  gemspec.add_dependency 'compass', '>= 0.11.beta.1'
+  gemspec.add_dependency 'compass', '>= 0.11.beta.2'
 
   gemspec.files = %w(README.markdown VERSION.yml Rakefile)
   gemspec.files += Dir.glob("lib/**/*")

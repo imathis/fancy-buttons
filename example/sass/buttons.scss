@@ -1,0 +1,10 @@
+@import "fancy-buttons";
+@import "page-styles";
+
+$color: #124c89;
+a.button, button {
+  @include fancy-button($color, $type: glossy);
+  font-size: 1em;
+  font-family: "Lucida Grande";
+  padding: .3em 1em;
+}
