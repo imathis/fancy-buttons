@@ -1,10 +1,44 @@
 @import "fancy-buttons";
-@import "page-styles";
+//@import "page-styles";
+$gold: #d9ac3a;
+$blue: #4191dc;
+$dark-blue: #1056c4;
+$fuschia: #d868c7;
+$pink: #f15688;
+$color: #444;
+//$color: $fuschia;
 
-$color: #124c89;
-a.button, button {
-  @include fancy-button($color, $type: glossy);
-  font-size: 1em;
-  font-family: "Lucida Grande";
-  padding: .3em 1em;
+.button-basics {
+  //font-size: 1.1em;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  //font-weight: bold;
+  //padding: .2em 0.8em;
 }
+//@mixin background-image($s) {}
+//@mixin box-shadow($s:false, $s: false) {}
+
+button {
+  @extend .button-basics;
+  @include fancy-button($color, $theme: basic);
+}
+a.button {
+  @extend .button-basics;
+  @include fancy-button($color, $theme: mini);
+  //font-size: 15px;
+}
+.glossy {
+  @extend .button-basics;
+  @include fancy-button($color);
+}
+.bonbon {
+  @extend .button-basics;
+  @include fancy-button($color, $theme: bonbon);
+}
+.color {
+  width: 30px; height: 30px;
+  display: inline-block;
+  margin-left: 20px;
+  background: $color;
+}
+
+//-webkit-box-shadow: #72B9EB 0px 1px 0px 0px inset, #B3B3B3 0px 1px 2px 0px;

@@ -1,15 +1,34 @@
 @import "compass/css3";
-//@import "fancy-gradient";
+@import "fancy-button-themes";
 
 $fb-image-path: image-url("button_bg.png") !default;
+$fb-default-color: #444;
 
-@function fb-text-color($color, $dark: #000, $light: #fff){
+@function fb-text-color($color, $dark: dark, $light: light){
   $text-color: ( (red($color)*299) + (green($color)*587) + (blue($color)*114) ) / 1000;
   $text-color: if($text-color >= 160, $dark, $light);
   @return $text-color;
 }
+@function can-saturate($color, $yes: true, $no: false) {
+  @return if(saturation($color) > 40, $yes, $no);
+}
 
-@function fb-get-gradient($color, $adjustments){
+@mixin fb-text-shadow($color){
+  @if(fb-text-color($color) == dark){
+    text-shadow: rgba(#fff, .4) 0 1px 0px;
+  } @else {
+    text-shadow: rgba(scale-color($color, $saturation: if(saturation($color) > 30, 21%, 0%), $lightness: if(lightness($color) < 50, -70%, -50%)), .5) 0 -1px 0px;
+  }
+}
+
+@mixin fb-borders($color, $width){
+  $l: if(lightness($color) < 40, -49%, -10%);
+  $s: if(lightness($color) < 60, if(lightness($color) < 40, 40%, -20%), -60%);
+  border: if($width, $width, 1px) solid scale-color($color, $lightness: $l, $saturation: can-saturate($color, $s, 0%));
+  border-bottom-color: scale-color($color, $lightness: $l - 20, $saturation: can-saturate($color, $s - 20, 0%));
+}
+
+@function fb-gradient($color, $adjustments){
   $colors: compact();
   @each $adj in $adjustments {
     $pos: nth($adj, length($adj));
@@ -20,84 +39,68 @@ $fb-image-path: image-url("button_bg.png") !default;
   @return linear-gradient($colors);
 }
 
-@function fb-matte-gradient($color, $state: false){
-  $adjustments: 20% 0% 0%, 0% 50%, -15% 0% 100%;
-  @if($state == hover){
-    $adjustments: 12% 0%, 0% 50%, -20% 100%;
-  }@else if($state == active){
-    $adjustments: 12% 0%, 0% 50%, -20% 100%;
-  }
-  @return fb-get-gradient($color, $adjustments);
-}
-
-@function fb-glossy-gradient($color, $state: false){
-  @debug saturation($color);
-  $adjustments: 45% -25% 0%, 13% -25% 50%, -8% 50%, 7% -14% 100%;
-  @if($state == hover){
-    $adjustments: 35% -25% 0%, 8% -25% 50%, -8% 50%, 0% -14% 100%;
-  }@else if($state == active){
-    $adjustments: 35% -25% 0%, 8% -25% 50%, -8% 50%, 0% -14% 100%;
-  }
-  @return fb-get-gradient($color, $adjustments);
-}
-
-
-@mixin fb-background($color, $type: default, $state: false, $image: false) {
-  $bg: '';
-  @if $type == default {
-    $bg: fb-matte-gradient($color, $state);
-  } @else if $type == glossy {
-    $bg: fb-glossy-gradient($color, $state);
-  }
+@mixin fb-bg($bg, $image: false) {
   @include background-image(if($image, "#{$bg}, #{$image}", $bg));
 }
 
-@mixin fb-border-color($color){
-  $l: if(lightness($color) < 40, -49%, -10%);
-  $s: if(lightness($color) < 60, if(lightness($color) < 40, 40%, -20%), -60%);
-  border: 1px solid scale-color($color, $lightness: $l, $saturation: $s);
-}
 
 @mixin fancy-button (
-  $color: #bbb,
-  $type: default,
-  $corners: .3em,
-  $border-width: 1px,
-  $hover: true){
+  $color: false,
+  $theme: glossy,
+  $radius: false,
+  $border: false,
+  $hover: true,
+  $active: true,
+  $image: false,
+  $style-disabled: false,
+  $disable: false){
 
   @extend .fb-reset;
-  color: fb-text-color($color);
-  @include border-radius($corners);
-  @include fb-border-color($color);
-  @include fb-background($color, $type);
-  @include box-shadow(rgba(#fff, .2) 0 0 1px 1px inset);
-  @if ($hover) {
-    &:hover, &:focus {
-      @include fb-background($color, $type, hover);
-    }
+  @if $hover {
+    $hover: if(type-of($hover) == color, $hover, $color);
+    $active: if(type-of($active) == color, $active, $hover);
   }
-  &:active {
-    @include fb-background($color, $type, active);
-    @include box-shadow(rgba(scale-color($color, $saturation: if(saturation($color) > 30, 15%, 0%), $lightness: if(lightness($color) < 50, -30%, -10%)), .7) 0 0 .5em 2px inset, rgba(#fff, .7) 0 1px);
+  @if $active {
+    $active: if(type-of($active) == color, $active, $color);
   }
-  background-color: scale-color($color, $lightness: 15%, $saturation: if(saturation($color) > 20, 20%, 0%));
-  text-shadow: rgba(scale-color($color, $saturation: if(saturation($color) > 30, 15%, 0%), $lightness: if(lightness($color) < 50, -70%, -20%)), .4) 0 -1px 1px;
+  @if $style-disabled { &[disabled] {
+    @include fb-theme($theme, $color, $hover, $active, $border, $radius, $image, $disabled: true);
+  }}
+  @if $disable {
+    @include fb-theme($theme, $color, $hover, $active, $border, $radius, $image, $disabled: true);
+  } @else {
+    @include fb-theme($theme, $color, $hover, $active, $border, $radius, $image);
+  }
+}
+
+@mixin fb-theme($theme, $color, $hover, $active, $border, $radius, $image, $disabled: false){
+  @if $disabled { cursor: default !important; @include opacity(.7); }
+  @if $theme == glossy {
+    @include fb-theme-glossy($color, $hover, $active, $border, $radius, $image, $disabled);
+  } @else if $theme == basic {
+    @include fb-theme-basic($color, $hover, $active, $border, $radius, $image, $disabled);
+  } @else if $theme == mini {
+    @include fb-theme-mini($color, $hover, $active, $border, $radius, $image, $disabled);
+  }
 }
 
 // Reset the button's important properties to make sure they behave correctly
 @mixin fb-reset {
   @include inline-block;
-  //background: none;
   background: #{$fb-image-path} repeat-x bottom left;
   margin: 0; width: auto;
   line-height: 1.3em;
   overflow: visible;
   cursor: pointer;
   text-decoration: none;
+  font-size: 1em;
+  padding: 0.1em 0.5em;
   border: 0;
+  @include experimental(user-select, none, -webkit, -moz, -o, -ms);
   &::-moz-focus-inner { border: none; padding: 0; }
   &:focus { outline: none; }
 }
+
 
 .fb-reset { @include fb-reset; }
 
