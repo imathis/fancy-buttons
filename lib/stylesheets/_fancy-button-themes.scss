@@ -27,8 +27,7 @@
     @if $active { &:active {
       $state: if($color == $active, hover, standard);
       @if not $hover or $state == standard { @include fb-bg(fb-gradient-glossy($active, $state), $image); }
-      //@include box-shadow(rgba(scale-color($color, $saturation: can-saturate($color, 15%, 0%), $lightness: if(lightness($color) < 50, -30%, -10%)), .9) 0 0 .6em .2em inset, rgba(#fff, .7) 0 1px);
-      @include box-shadow(scale-color($active, $saturation: can-saturate($active, 10%, 0%), $lightness: -35%) 0 0 .7em .2em inset, rgba(#fff, .5) 0 1px);
+      @include box-shadow(scale-color($active, $saturation: can-saturate($active, 10%, 0%), $lightness: -35%) 0 0 .7em .2em inset);
       @include fb-borders(darken($active, 20), $border);
       background-color: scale-color($active, $lightness: -12%, $saturation: can-saturate($active, 20%, 0%));
     }}
@@ -63,7 +62,7 @@
     @if $active { &:active {
       $state: if($color == $active, active, standard);
       @include fb-bg(fb-gradient-basic($active, $state), $image);
-      @include box-shadow(rgba(scale-color($active, $saturation: can-saturate($active, 15%, 0%), $lightness: if(lightness($active) < 50, -30%, -10%)), .9) 0 0 .5em 0px inset, rgba(#fff, .5) 0 1px);
+      @include box-shadow(rgba(scale-color($active, $saturation: can-saturate($active, 15%, 0%), $lightness: if(lightness($active) < 50, -30%, -10%)), .9) 0 0 .5em 0px inset);
       @if fb-text-color($active) == light { color: #eee; }
       background-color: scale-color($active, $lightness: -12%, $saturation: can-saturate($active, 20%, 0%));
     }}
@@ -106,7 +105,7 @@
       $l: -45%;
       @include fb-bg(fb-gradient-mini($color, $state), $image);
       @include fb-borders(darken($active, 20), $border);
-      @include box-shadow(scale-color($active, $saturation: $s, $lightness: $l) 0 0 .6em .3em inset, rgba(#fff, .5) 0 1px);
+      @include box-shadow(scale-color($active, $saturation: $s, $lightness: $l) 0 0 .6em .3em inset);
       background-color: scale-color($active, $lightness: -12%, $saturation: can-saturate($active, 20%, 0%));
     }}
   }
