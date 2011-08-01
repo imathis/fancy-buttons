@@ -4,7 +4,7 @@ require File.join(path, 'version')
 Gem::Specification.new do |gemspec|
   gemspec.name = "fancy-buttons"
   gemspec.version = FancyButtons::VERSION # Update the VERSION.yml file to set this.
-  gemspec.date = "#{Time.now.year}-#{Time.now.month}-#{Time.now.day}" # Automatically update for each build
+  gemspec.date = Time.now.strftime("%Y-%m-%d") # Automatically update for each build
   gemspec.description = "Fancy Buttons helps you easily style buttons with beautiful CSS3 features like gradients, rounded corners, etc. Don't worry the buttons also degrade nicely for browsers with no support. This requires the Compass stylesheet authoring framework."
   gemspec.homepage = "http://github.com/imathis/fancy-buttons"
   gemspec.authors = ["Brandon Mathis"]
