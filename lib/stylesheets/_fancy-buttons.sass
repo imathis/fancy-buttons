@@ -44,7 +44,7 @@ $fb-line-height: 1.2em !default
   +box-shadow(rgba(#fff, (lightness($color))/100) 0 0 .1em 1px inset)
   +background-clip(padding-box)
   @if $fb-allow-disabled
-    &.disabled, &[disabled]
+    &.disabled, &[disabled], &.readonly, &[readonly]
       +disable-fancy-button($color)
 
 =fancy-button-allow-disable($color: $fb-color, $font-size: $fb-font-size, $radius: $fb-radius, $border-width: $fb-border-width)
@@ -128,7 +128,7 @@ $fb-line-height: 1.2em !default
   &:active
     color: $active
   @if $fb-allow-disabled
-    &.disabled, &[disabled]
+    &.disabled, &[disabled], &.readonly, &[readonly]
       color: $color
 
 // Layout the button's box
