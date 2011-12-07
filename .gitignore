@@ -3,3 +3,4 @@ example/stylesheets/
 example/sass/.sass-cache
 *.gem
 .bundle
+.rvmrc
