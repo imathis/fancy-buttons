@@ -1,4 +1,4 @@
-src/.sass-cache/
+example/.sass-cache/
 example/stylesheets/
 example/sass/.sass-cache
 *.gem
