@@ -173,6 +173,8 @@ $fb-line-height: 1.2em !default
   +opacity($opacity)
   +box-shadow(none)
   cursor: default !important
+  @if $fb-inset
+    +box-shadow(rgba(255,255,255, (lightness($color))/100), 0, 0, .1em, 1px, inset)
 
 .fancy-button-reset-base-class
   +fb-reset
