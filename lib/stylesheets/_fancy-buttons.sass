@@ -33,7 +33,7 @@ $fb-line-height: 1.2em !default
       +fb-color(darken($color, 3), "hover", $color)
     @else
       +fb-color($hover, "hover")
-  &:active
+  &:active, &.active
     @if $active == 0
       +fb-color(darken($color, 6), "active", $color)
       +box-shadow(darken($color, 15) 0 .08em .2em 1px inset)
